@@ -60,9 +60,9 @@
       };
     },
     computed: {
-        isAnyUnreadMessages() {
-            return this.notifications.length > 0;
-        },
+      isAnyUnreadMessages() {
+          return this.notifications.length > 0;
+      },
      },
     methods: {
       toggleNotifications() {
