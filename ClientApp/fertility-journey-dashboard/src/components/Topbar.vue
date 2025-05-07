@@ -1,7 +1,7 @@
 <template>
   <header class="topbar">
     <div class="actions">
-      <i class="fas fa-bell notification-bell"></i>
+      <NotificationsDropdown />
       <div class="dropdown" @click="toggleDropdown">
         <div class="profile-display">
           <div class="avatar-wrapper">
@@ -37,8 +37,13 @@
 </template>
 
 <script>
+import NotificationsDropdown from './NotificationsDropdown.vue';
+
 export default {
   name: 'Topbar',
+  components: {
+    NotificationsDropdown
+  },
   data() {
     return { 
       dropdown: false, 
