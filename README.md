@@ -1,14 +1,12 @@
-# Update the README content to reflect Vue 2 and the app name "FertilityJourneyDashboard"
-updated_readme_content = """
 # FertilityJourneyDashboard
 
-This is a full-stack web application built with Vue 2 (Vite) for the frontend and .NET 8 Web API for the backend. The backend uses Entity Framework Core with a Code-First approach to connect to a SQL Server database.
+This is a full-stack web application built with Vue 3 (Vite) for the frontend and .NET 8 Web API for the backend. The backend uses Entity Framework Core with a Code-First approach to connect to a SQL Server database.
 
 ---
 
 ## 🛠 Technologies Used
 
-- **Frontend**: Vue 2 (Vite)
+- **Frontend**: Vue 3 (Vite)
 - **Backend**: .NET 8 Web API
 - **Database**: SQL Server
 - **ORM**: Entity Framework Core (Code-First)
@@ -17,7 +15,7 @@ This is a full-stack web application built with Vue 2 (Vite) for the frontend an
 
 ## 📦 Project Structure
 
-- `ClientApp/`: Vue.js frontend project (Vue 2 with Vite)
+- `ClientApp/`: Vue.js frontend project (Vue 3 with Vite)
 - `Server/`: .NET 8 backend API project with EF Core
 - `README.md`: Project instructions and setup guide
 
