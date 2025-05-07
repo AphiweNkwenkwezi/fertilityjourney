@@ -1,16 +1,20 @@
 <template>
     <div class="dashboard-layout">
+      <!-- Sidebar -->
       <Sidebar />
       <div class="main-area">
+        <!-- Top nav -->
         <Topbar @logout="logout" />
+
         <main class="content">
+          <!-- Dashboard totals -->
           <div class="dashboard-stats">
-            <StatCard title="Total Practices" value="120" growth="4" icon="fas fa-clinic-medical" />
-            <StatCard title="Total Subscribers" value="3,452" growth="2" icon="fas fa-user-friends" />
-            <StatCard title="Total Treatments" value="212" growth="5" icon="fas fa-pills" />
-            <StatCard title="Total Consents" value="168" growth="-1" icon="fas fa-file-signature" />
-            <StatCard title="Total Consents Signed" value="142" growth="3" icon="fas fa-file-signature" />
-            <StatCard title="Total Fact Sheets Read" value="2,678" growth="6" icon="fas fa-book-open" />
+            <StatCard title="Total Practices" value="120" :growth="4" icon="fas fa-clinic-medical" />
+            <StatCard title="Total Subscribers" value="3,452" :growth="2" icon="fas fa-user-friends" />
+            <StatCard title="Total Treatments" value="212" :growth="5" icon="fas fa-pills" />
+            <StatCard title="Total Consents" value="168" :growth="-1" icon="fas fa-file-signature" />
+            <StatCard title="Total Consents Signed" value="142" :growth="3" icon="fas fa-file-signature" />
+            <StatCard title="Total Fact Sheets Read" value="2,678" :growth="6" icon="fas fa-book-open" />
           </div>
 
           <router-view />
