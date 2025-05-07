@@ -102,7 +102,7 @@ export default {
 }
 .dropdown-menu {
   position: absolute;
-  top: 4rem;
+  top: 4.5rem;
   right: 0;
   background: #fff;
   border-radius: 6px;
