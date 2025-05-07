@@ -6,11 +6,11 @@
         <main class="content">
           <div class="dashboard-stats">
             <StatCard title="Total Practices" value="120" growth="4" icon="fas fa-clinic-medical" />
-            <StatCard title="Subscribers" value="3,452" growth="2" icon="fas fa-user-friends" />
-            <StatCard title="Treatments" value="212" growth="5" icon="fas fa-pills" />
-            <StatCard title="Consents" value="168" growth="-1" icon="fas fa-file-signature" />
-            <StatCard title="Consents Signed" value="142" growth="3" icon="fas fa-check-circle" />
-            <StatCard title="Fact Sheets Read" value="2,678" growth="6" icon="fas fa-book-open" />
+            <StatCard title="Total Subscribers" value="3,452" growth="2" icon="fas fa-user-friends" />
+            <StatCard title="Total Treatments" value="212" growth="5" icon="fas fa-pills" />
+            <StatCard title="Total Consents" value="168" growth="-1" icon="fas fa-file-signature" />
+            <StatCard title="Total Consents Signed" value="142" growth="3" icon="fas fa-file-signature" />
+            <StatCard title="Total Fact Sheets Read" value="2,678" growth="6" icon="fas fa-book-open" />
           </div>
 
           <router-view />

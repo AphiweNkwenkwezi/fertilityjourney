@@ -3,11 +3,13 @@
     <div class="stat-card-content">
       <div class="stat-card-info">
         <div class="stat-title">{{ title }}</div>
-        <div class="stat-value">{{ value }}</div>
         <div class="stat-growth" :class="{ positive: growth >= 0, negative: growth < 0 }">
-          <i :class="growth >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'"></i>
-          {{ Math.abs(growth) }}%
+          <div class="growth-icon" :class="{ positive: growth >= 0, negative: growth < 0 }">
+            <i :class="growth >= 0 ? 'fas fa-arrow-up' : 'fas fa-arrow-down'"></i>
+          </div>
+          {{ growth }}%
         </div>
+        <div class="stat-value">{{ value }}</div>
       </div>
       <div class="stat-icon">
         <i :class="icon"></i>
@@ -66,10 +68,11 @@
 }
 
 .stat-growth {
-  font-size: 0.875rem;
+  font-size: 14px;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .stat-growth.positive {
@@ -97,6 +100,26 @@
   font-size: 1.25rem;
   color: #067D82;
 }
+.growth-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+}
+
+.growth-icon.positive {
+  background-color: #D4EDDA;
+  color: #28a745;
+}
+
+.growth-icon.negative {
+  background-color: #F8D7DA;
+  color: #dc3545;
+}
+
 
 @media (max-width: 600px) {
   .stat-card-content {
