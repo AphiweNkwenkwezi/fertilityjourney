@@ -1,6 +1,9 @@
 <template>
   <aside class="sidebar">
-    <div class="logo">🩺 Fertility Dashboard</div>
+    <!-- <div class="logo">🩺 My Fertility Journey</div> -->
+    <div class="logo">
+      <img src="@/assets/logo.png" alt="My Fertility Journey Logo" class="logo-image" />
+    </div>
     <nav>
       <ul>
         <SidebarItem
@@ -52,6 +55,9 @@ export default {
   font-weight: bold;
   color: #5F97A0;
   margin-bottom: 2rem;
+}
+.logo-image {
+  height: 2.5rem;
 }
 
 ul {
