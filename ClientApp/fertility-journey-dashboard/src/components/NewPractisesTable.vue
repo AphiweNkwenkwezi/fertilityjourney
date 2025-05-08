@@ -9,7 +9,7 @@
             <td>{{ practice.email }}</td>
             <td>{{ practice.dateCreated }}</td>
             <td>
-            <input type="checkbox" v-model="practice.active" />
+              <BaseToggle v-model="practice.active" />
             </td>
             <td class="action-icons">
             <i class="far fa-edit"></i>
@@ -24,12 +24,14 @@
 <script>
 import BaseTable from '@/components/BaseTable.vue';
 import BaseCard from './BaseCard.vue';
+import BaseToggle from './BaseToggle.vue';
   
   export default {
     name: 'NewPracticesTable',
     components: { 
       BaseTable,
-      BaseCard
+      BaseCard,
+      BaseToggle
      },
     data() {
       return {
