@@ -1,6 +1,7 @@
+
 # FertilityJourneyDashboard
 
-This is a full-stack web application built with Vue 3 (Vite) for the frontend and .NET 8 Web API for the backend. The backend uses Entity Framework Core with a Code-First approach to connect to a SQL Server database.
+This is a full-stack web application built with **Vue 3 (Vite)** for the frontend and **.NET 8 Web API** for the backend. The backend uses **Entity Framework Core** with a **Code-First** approach and connects to a **SQL Server** database.
 
 ---
 
@@ -38,3 +39,48 @@ cd Server
 dotnet restore
 dotnet ef database update  # Applies migrations to create the SQL DB
 dotnet run
+```
+
+---
+
+### Frontend Setup
+
+```bash
+cd ClientApp
+npm install
+npm run dev
+```
+
+---
+
+## 🧪 Testing
+
+To be added (unit tests and integration tests can be written for both frontend and backend).
+
+---
+
+## 📁 Assets
+
+![App Logo](src/assets/logo.png)
+
+---
+
+## 📌 Features
+
+- User authentication (WIP)
+- Dashboard with statistics and visualizations
+- Notifications system
+- Practice management with CRUD support
+- Responsive and accessible UI design
+
+---
+
+## 🙌 Contribution
+
+Feel free to fork this repo and submit pull requests. Issues and suggestions are welcome.
+
+---
+
+## 📃 License
+
+This project is licensed under the MIT License.
