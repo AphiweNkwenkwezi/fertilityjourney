@@ -1,6 +1,9 @@
 <template>
     <div class="donut-chart">
-      <Doughnut :data="chartData" :options="chartOptions" />
+      <Doughnut 
+        :data="chartData" 
+        :options="chartOptions" 
+      />
       <div class="donut-info">
         <p class="percentage">{{ percentage }}%</p>
         <div class="label">{{ label }}</div>
@@ -8,7 +11,7 @@
     </div>
   </template>
   
-  <script>
+<script>
   import { Doughnut } from 'vue-chartjs';
 
   export default {
