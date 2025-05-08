@@ -26,8 +26,11 @@
             <StatCard title="Total Fact Sheets Read" value="2,678" :growth="6" icon="fas fa-book-open" />
           </div>
 
+          <!-- Charts summaries -->
+          <ChartsSection />
+
           <!-- New Practises Summary -->
-           <NewPractisesTable />
+          <NewPractisesTable />
 
           <router-view />
         </main>
@@ -40,6 +43,7 @@ import Sidebar from '@/components/Sidebar.vue';
 import Topbar from '@/components/Topbar.vue';
 import StatCard from '../components/StatCard.vue';
 import NewPractisesTable from '../components/NewPractisesTable.vue';
+import ChartsSection from '../components/ChartsSection.vue';
   
   export default {
     name: 'DashboardLayout',
@@ -48,6 +52,7 @@ import NewPractisesTable from '../components/NewPractisesTable.vue';
       Topbar,
       StatCard,
       NewPractisesTable,
+      ChartsSection,
     },
     data() {
       return {
