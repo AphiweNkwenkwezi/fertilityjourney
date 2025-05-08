@@ -41,18 +41,18 @@ import NotificationsDropdown from './NotificationsDropdown.vue';
 
 export default {
   name: 'Topbar',
+  props: {
+    user: {
+      type: Object,
+      required: true
+    }
+  },
   components: {
     NotificationsDropdown
   },
   data() {
     return { 
       dropdown: false, 
-      user: { 
-        name: "Aphiwe",
-        lastname: "Nkwenkwezi",
-        email: "aphiwenkwenkwezi@gmail.com",
-        avatar: ""
-      },
      };
   },
   computed: {

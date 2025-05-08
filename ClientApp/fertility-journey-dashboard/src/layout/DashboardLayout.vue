@@ -4,9 +4,18 @@
       <Sidebar />
       <div class="main-area">
         <!-- Top nav -->
-        <Topbar @logout="logout" />
+        <Topbar 
+          :user=user
+          @logout="logout" 
+        />
 
         <main class="content">
+          <!-- Page header -->
+          <div class="page-header">
+            <h1>Welcome {{ user.name }}!</h1>
+            <p class="subheading">Your current stats at a glance.</p>
+          </div>
+
           <!-- Dashboard totals -->
           <div class="dashboard-stats">
             <StatCard title="Total Practices" value="120" :growth="4" icon="fas fa-clinic-medical" />
@@ -17,23 +26,38 @@
             <StatCard title="Total Fact Sheets Read" value="2,678" :growth="6" icon="fas fa-book-open" />
           </div>
 
+          <!-- New Practises Summary -->
+           <NewPractisesTable />
+
           <router-view />
         </main>
       </div>
     </div>
   </template>
   
-  <script>
-  import Sidebar from '@/components/Sidebar.vue';
-  import Topbar from '@/components/Topbar.vue';
-  import StatCard from '../components/StatCard.vue';
+<script>
+import Sidebar from '@/components/Sidebar.vue';
+import Topbar from '@/components/Topbar.vue';
+import StatCard from '../components/StatCard.vue';
+import NewPractisesTable from '../components/NewPractisesTable.vue';
   
   export default {
     name: 'DashboardLayout',
     components: {
       Sidebar,
       Topbar,
-      StatCard
+      StatCard,
+      NewPractisesTable,
+    },
+    data() {
+      return {
+        user: { 
+            name: "Aphiwe",
+            lastname: "Nkwenkwezi",
+            email: "aphiwenkwenkwezi@gmail.com",
+            avatar: ""
+          },
+      };
     },
     methods: {
       logout() {
@@ -44,6 +68,23 @@
   </script>
   
 <style scoped>
+.page-header {
+  text-align: left;
+  margin-block: 0;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-block: 0;
+}
+
+.page-header .subheading {
+  font-size: 1rem;
+  color: #BCBCBC;
+  font-weight: 400;
+  margin: 0 0.2rem 2rem;
+}
 .dashboard-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 cards per row */

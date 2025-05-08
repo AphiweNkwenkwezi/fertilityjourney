@@ -1,71 +1,89 @@
 <template>
-  <table class="table tablesorter" :class="tableClass">
-    <thead :class="theadClasses">
-      <tr>
-        <slot name="columns" :columns="columns">
-          <th v-for="column in columns" :key="column">{{ column }}</th>
-        </slot>
-      </tr>
-    </thead>
-    <tbody :class="tbodyClasses">
-      <tr v-for="(item, index) in data" :key="index">
-        <slot :row="item" :index="index">
-          <td v-for="(column, index) in colsWithValue(item)" :key="index">
-            {{ itemValue(item, column) }}
-          </td>
-        </slot>
-      </tr>
-    </tbody>
-  </table>
-</template>
-<script>
-export default {
-  name: 'base-table',
-  props: {
-    columns: {
-      type: Array,
-      default: () => [],
-      description: 'Table columns',
+    <div class="base-table">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th v-for="(header, i) in headers" :key="i">{{ header }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <slot></slot>
+        </tbody>
+      </table>
+      <div clase="table-divider"></div>
+      <div class="see-all" v-if="showSeeAll">
+        <a href="#">
+            See All <i class="fas fa-chevron-right" style="margin-left: 6px;"></i>
+        </a>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: 'BaseTable',
+    props: {
+      headers: Array,
+      showSeeAll: {
+        type: Boolean,
+        default: true,
+      },
     },
-    data: {
-      type: Array,
-      default: () => [],
-      description: 'Table data',
-    },
-    type: {
-      type: String, // striped | hover
-      default: '',
-      description: 'Whether table is striped or hover type',
-    },
-    theadClasses: {
-      type: String,
-      default: '',
-      description: '<thead> css classes',
-    },
-    tbodyClasses: {
-      type: String,
-      default: '',
-      description: '<tbody> css classes',
-    },
-  },
-  computed: {
-    tableClass() {
-      return this.type && `table-${this.type}`;
-    },
-    colsWithValue() {
-      return row => {
-        return this.columns.filter(column => this.hasValue(row, column));
-      };
-    },
-  },
-  methods: {
-    hasValue(item, column) {
-      return item[column.toLowerCase()] !== 'undefined';
-    },
-    itemValue(item, column) {
-      return item[column.toLowerCase()];
-    },
-  },
-};
-</script>
-<style></style>
+  };
+  </script>
+  
+  <style scoped>
+  .base-table {
+    overflow-x: auto;
+    background: #fff;
+  }
+  
+  .modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+  }
+  
+  thead {
+    background-color: #f5f5f5;
+    text-align: left;
+  }
+  
+  th {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    color: #747474;
+  }
+
+  td {
+    padding: 14px 16px;
+    color: var(--color-text-grey);
+  }
+  
+  td input[type='checkbox'] {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+  .action-icons i {
+    color: #67adb9;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .see-all {
+    text-align: right;
+    padding: 10px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .see-all a {
+    color: #67adb9;
+    text-decoration: none;
+  }
+  .table-divider {
+    background-color: rgba(157, 157, 157, 0.24);
+    height: 2px;
+    }
+  </style>
+  
