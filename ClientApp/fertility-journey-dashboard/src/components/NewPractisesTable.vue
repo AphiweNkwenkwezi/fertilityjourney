@@ -3,7 +3,7 @@
     <section class="new-practices-table">
         <h2 class="section-title">Newest Practices</h2>
         <BaseTable :headers="headers">
-        <tr v-for="(practice, i) in practices.slice(0, 5)" :key="i">
+          <tr v-for="(practice, i) in practices.slice(0, 5)" :key="i">
             <td>{{ practice.name }}</td>
             <td>{{ practice.tel }}</td>
             <td>{{ practice.email }}</td>
@@ -12,10 +12,10 @@
               <BaseToggle v-model="practice.active" />
             </td>
             <td class="action-icons">
-            <i class="far fa-edit"></i>
-            <i class="far fa-trash-alt"></i>
+              <i class="far fa-edit"></i>
+              <i class="far fa-trash-alt" @click="removePractise"></i>
             </td>
-        </tr>
+          </tr>
         </BaseTable>
     </section>
   </BaseCard>

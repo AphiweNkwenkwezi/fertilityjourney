@@ -44,33 +44,42 @@ import Topbar from '@/components/Topbar.vue';
 import StatCard from '../components/StatCard.vue';
 import NewPractisesTable from '../components/NewPractisesTable.vue';
 import ChartsSection from '../components/ChartsSection.vue';
+import { useUserStore } from '../stores/userStore.js';
   
-  export default {
-    name: 'DashboardLayout',
-    components: {
-      Sidebar,
-      Topbar,
-      StatCard,
-      NewPractisesTable,
-      ChartsSection,
-    },
-    data() {
-      return {
-        user: { 
-            name: "Aphiwe",
-            lastname: "Nkwenkwezi",
-            email: "aphiwenkwenkwezi@gmail.com",
-            avatar: ""
-          },
-      };
-    },
-    methods: {
-      logout() {
-        console.log('Logging out...');
-      }
+export default {
+  name: 'DashboardLayout',
+  components: {
+    Sidebar,
+    Topbar,
+    StatCard,
+    NewPractisesTable,
+    ChartsSection,
+  },
+  data() {
+    return {
+      // userStore: null
+    };
+  },
+  created() {
+    this.userStore.getUser()
+      .then(() => console.log("User data fetched successfully."))
+      .catch(error => console.error("Error fetching user data:", error));      
+  },
+  methods: {
+    logout() {
+      this.userStore.logout();
     }
-  };
-  </script>
+  },
+  computed: {
+    userStore() {
+      return useUserStore();
+    },
+    user() {
+      return this.userStore ? this.userStore.user : {};
+    }
+  }
+};
+</script>
   
 <style scoped>
 .page-header {
@@ -92,24 +101,24 @@ import ChartsSection from '../components/ChartsSection.vue';
 }
 .dashboard-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 1rem;
   margin-bottom: 2rem;
 }
-  .dashboard-layout {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-  }
-  .main-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: #f5f6fa;
-  }
-  .content {
-    padding: 2rem;
-    overflow-y: auto;
-    height: 100%;
-  }
-  </style>
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f5f6fa;
+}
+.content {
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100%;
+}
+</style>

@@ -46,7 +46,6 @@ export default {
   padding: 1.5rem 1rem;
   border-right: 1px solid #eee;
   height: 100vh;
-  /* box-shadow: 0 0 10px rgba(0,0,0,0.05); */
 }
 .logo {
   font-size: 1.2rem;
