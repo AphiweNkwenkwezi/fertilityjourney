@@ -12,8 +12,9 @@
       </table>
       <div clase="table-divider"></div>
       <div class="see-all" v-if="showSeeAll">
-        <a href="#">
-            See All <i class="fas fa-chevron-right" style="margin-left: 6px;"></i>
+        <a href="#" @click.prevent="$emit('toggle-see-all')">
+          {{ isShowingAll ? 'See Less' : 'See All' }}
+          <i class="fas fa-chevron-right" style="margin-left: 6px;"></i>
         </a>
       </div>
     </div>
@@ -28,6 +29,10 @@
         type: Boolean,
         default: true,
       },
+      isShowingAll: {
+        type: Boolean,
+        default: false
+      }
     },
   };
   </script>

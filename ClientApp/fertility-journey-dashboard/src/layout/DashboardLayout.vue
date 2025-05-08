@@ -1,42 +1,42 @@
 <template>
-    <div class="dashboard-layout">
-      <!-- Sidebar -->
-      <Sidebar />
-      <div class="main-area">
-        <!-- Top nav -->
-        <Topbar 
-          :user=user
-          @logout="logout" 
-        />
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <Sidebar />
+    <div class="main-area">
+      <!-- Top nav -->
+      <Topbar 
+        :user=user
+        @logout="logout" 
+      />
 
-        <main class="content">
-          <!-- Page header -->
-          <div class="page-header">
-            <h1>Welcome {{ user.name }}!</h1>
-            <p class="subheading">Your current stats at a glance.</p>
-          </div>
+      <main class="content">
+        <!-- Page header -->
+        <div class="page-header">
+          <h1>Welcome {{ user.name }}!</h1>
+          <p class="subheading">Your current stats at a glance.</p>
+        </div>
 
-          <!-- Dashboard totals -->
-          <div class="dashboard-stats">
-            <StatCard title="Total Practices" :value=120 :growth="4" icon="fas fa-clinic-medical" />
-            <StatCard title="Total Subscribers" :value=3452 :growth="2" icon="fas fa-user-friends" />
-            <StatCard title="Total Treatments" :value=212 :growth="5" icon="fas fa-pills" />
-            <StatCard title="Total Consents" :value=168 :growth="-1" icon="fas fa-file-signature" />
-            <StatCard title="Total Consents Signed" :value=142 :growth="3" icon="fas fa-file-signature" />
-            <StatCard title="Total Fact Sheets Read" :value=2678 :growth="6" icon="fas fa-book-open" />
-          </div>
+        <!-- Dashboard totals -->
+        <div class="dashboard-stats">
+          <StatCard title="Total Practices" :value=120 :growth="4" icon="fas fa-clinic-medical" />
+          <StatCard title="Total Subscribers" :value=3452 :growth="2" icon="fas fa-user-friends" />
+          <StatCard title="Total Treatments" :value=212 :growth="5" icon="fas fa-pills" />
+          <StatCard title="Total Consents" :value=168 :growth="-1" icon="fas fa-file-signature" />
+          <StatCard title="Total Consents Signed" :value=142 :growth="3" icon="fas fa-file-signature" />
+          <StatCard title="Total Fact Sheets Read" :value=2678 :growth="6" icon="fas fa-book-open" />
+        </div>
 
-          <!-- Charts summaries -->
-          <ChartsSection />
+        <!-- Charts summaries -->
+        <ChartsSection />
 
-          <!-- New Practises Summary -->
-          <NewPractisesTable />
+        <!-- New Practises Summary -->
+        <NewPractisesTable />
 
-          <router-view />
-        </main>
-      </div>
+        <router-view />
+      </main>
     </div>
-  </template>
+  </div>
+</template>
   
 <script>
 import Sidebar from '@/components/Sidebar.vue';
@@ -76,7 +76,7 @@ export default {
     },
     user() {
       return this.userStore ? this.userStore.user : {};
-    }
+    },
   }
 };
 </script>

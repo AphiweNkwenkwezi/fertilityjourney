@@ -47,23 +47,16 @@
 <script>
 // import KevAvatar from '@/assets/profile photo.png'
 import { useNotificationStore } from '../stores/notificationStore';
-import { notifications } from '../services/appData';
 
 export default {
   name: 'NotificationsDropdown',
   created() {
     this.notificationStore.getNotifications()
-      .then(() => console.log("Notificationsloaded successfully."))
+      .then(() => console.log("Notifications loaded successfully."))
       .catch(error => console.error("Error loading notifications:", error));    
   },
   data() {
     return {
-      // showNotifications: false,
-      // notifications: [
-      //   { name: 'John Doe', title: 'New Message', date: '6 May 2025', avatar: KevAvatar },
-      //   { name: 'Jane Smith', title: 'Appointment Reminder', date: '5 May 2025', avatar: KevAvatar },
-      //   { name: 'Kev Doe', title: 'Checkup Reminder', date: '10 May 2025', avatar: KevAvatar }
-      // ]
     };
   },
   computed: {
