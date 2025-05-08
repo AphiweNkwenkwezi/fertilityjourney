@@ -9,7 +9,7 @@
           </div>
           {{ growth }}%
         </div>
-        <div class="stat-value">{{ value }}</div>
+        <div class="stat-value">{{ formattedAnimatedValue }}</div>
       </div>
       <div class="stat-icon">
         <i :class="icon"></i>
@@ -27,10 +27,45 @@
     },
     props: {
       title: String,
-      value: [String, Number],
+      value: Number,
       growth: Number,
       icon: String,
     },
+    data() {
+      return {
+        animatedValue: 0
+      };
+    },
+    mounted() {
+      this.animateValue(0, this.value);
+    },
+    watch: {
+      value(newVal, oldVal) {
+        this.animateValue(oldVal, newVal);
+      }
+    },
+    computed: {
+      formattedAnimatedValue() {
+        return this.animatedValue.toLocaleString();
+      }
+    },
+    methods: {
+      animateValue(start, end, duration = 2500) {
+        const startTime = performance.now();
+
+        const animate = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          this.animatedValue = Math.floor(start + (end - start) * progress);
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+
+        requestAnimationFrame(animate);
+      }
+    }
   };
 </script>
   
