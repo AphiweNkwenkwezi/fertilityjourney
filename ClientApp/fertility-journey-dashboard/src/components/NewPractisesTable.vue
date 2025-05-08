@@ -32,74 +32,73 @@ import BaseCard from './BaseCard.vue';
 import BaseToggle from './BaseToggle.vue';
 import { usePractiseStore } from '../stores/practiseStore';
   
-  export default {
-    name: 'NewPracticesTable',
-    components: { 
-      BaseTable,
-      BaseCard,
-      BaseToggle
-     },
-    data() {
-      return {
-        headers: ['Practise Name', 'Tel No', 'Email', 'Date Created', 'Status', 'Actions'],
-        showAllPractises: false
-      };
+export default {
+  name: 'NewPracticesTable',
+  components: { 
+    BaseTable,
+    BaseCard,
+    BaseToggle
     },
-    created() {
-      this.practiseStore.getPractises()
-        .then(() => console.log("Practises loaded successfully."))
-        .catch(error => console.error("Error loading practises:", error));  
+  data() {
+    return {
+      headers: ['Practise Name', 'Tel No', 'Email', 'Date Created', 'Status', 'Actions'],
+      showAllPractises: false
+    };
+  },
+  created() {
+    this.practiseStore.getPractises()
+      .then(() => console.log("Practises loaded successfully."))
+      .catch(error => console.error("Error loading practises:", error));  
+  },
+  computed: {
+    displayedPractises() {
+      return this.showAllPractises ? this.practises : this.practises.slice(0, 3);
     },
-    computed: {
-      displayedPractises() {
-        return this.showAllPractises ? this.practises : this.practises.slice(0, 3);
-      },
-      practiseStore() {
-        return usePractiseStore();
-      },
-      practises() {
-        return this.practiseStore.practises;
-      }
+    practiseStore() {
+      return usePractiseStore();
     },
-    methods: {
-      toggleSeeAll() {
-        this.showAllPractises = !this.showAllPractises;
-      },
-      deletePractise(index) {
-        this.practiseStore.deletePractise(index);
-      }
+    practises() {
+      return this.practiseStore.practises;
     }
-  };
-  </script>
+  },
+  methods: {
+    toggleSeeAll() {
+      this.showAllPractises = !this.showAllPractises;
+    },
+    deletePractise(index) {
+      this.practiseStore.deletePractise(index);
+    }
+  }
+};
+</script>
   
 <style scoped>
-  .section-title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    padding-left: 1rem;
-  }
+.section-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  padding-left: 1rem;
+}
 
-  th,
-  td {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-  }
+th,
+td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
 
-  td {
-    font-size: 0.85rem;
-  }
-  .action-icons {
-    display: flex;
-    gap: 0.95rem;
-  }
-  .action-icons i {    
-    color: #67adb9;
-    /* margin-right: 10px; */
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
+td {
+  font-size: 0.85rem;
+}
+.action-icons {
+  display: flex;
+  gap: 0.95rem;
+}
+.action-icons i {    
+  color: #67adb9;
+  /* margin-right: 10px; */
+  cursor: pointer;
+  font-size: 1rem;
+}
 </style>
   
