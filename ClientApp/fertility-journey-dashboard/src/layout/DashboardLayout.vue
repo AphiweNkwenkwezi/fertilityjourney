@@ -9,6 +9,7 @@
         @logout="logout" 
         @toggle-sidebar="toggleSidebar"
       />  
+      <!-- Views -->
       <router-view /> 
     </div>
   </div>
