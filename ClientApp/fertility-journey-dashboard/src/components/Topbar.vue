@@ -1,6 +1,13 @@
 <template>
   <header class="topbar">
+    <!-- Hamburger Menu for small screens -->
+    <button class="hamburger" @click="$emit('toggle-sidebar')">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Right-side actions -->
     <div class="actions">
+      <!-- Notifications -->
       <NotificationsDropdown />
       <div class="dropdown" @click="toggleDropdown">
         <div class="profile-display">
@@ -172,6 +179,21 @@ export default {
   justify-content: center;
   font-weight: 600;
   font-size: 1rem;
+}
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  display: none;
+  color: #578388;
+
+}
+
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
 }
 
 </style>

@@ -1,39 +1,15 @@
 <template>
   <div class="dashboard-layout">
     <!-- Sidebar -->
-    <Sidebar />
+    <Sidebar :isVisible="isSidebarVisible" />
     <div class="main-area">
       <!-- Top nav -->
       <Topbar 
         :user=user
         @logout="logout" 
-      />
-
-      <main class="content">
-        <!-- Page header -->
-        <div class="page-header">
-          <h1>Welcome {{ user.name }}!</h1>
-          <p class="subheading">Your current stats at a glance.</p>
-        </div>
-
-        <!-- Dashboard totals -->
-        <div class="dashboard-stats">
-          <StatCard title="Total Practices" :value=120 :growth="4" icon="fas fa-clinic-medical" />
-          <StatCard title="Total Subscribers" :value=3452 :growth="2" icon="fas fa-user-friends" />
-          <StatCard title="Total Treatments" :value=212 :growth="5" icon="fas fa-pills" />
-          <StatCard title="Total Consents" :value=168 :growth="-1" icon="fas fa-file-signature" />
-          <StatCard title="Total Consents Signed" :value=142 :growth="3" icon="fas fa-file-signature" />
-          <StatCard title="Total Fact Sheets Read" :value=2678 :growth="6" icon="fas fa-book-open" />
-        </div>
-
-        <!-- Charts summaries -->
-        <ChartsSection />
-
-        <!-- New Practises Summary -->
-        <NewPractisesTable />
-
-        <router-view />
-      </main>
+        @toggle-sidebar="toggleSidebar"
+      />  
+      <router-view /> 
     </div>
   </div>
 </template>
@@ -41,9 +17,6 @@
 <script>
 import Sidebar from '@/components/Sidebar.vue';
 import Topbar from '@/components/Topbar.vue';
-import StatCard from '../components/StatCard.vue';
-import NewPractisesTable from '../components/NewPractisesTable.vue';
-import ChartsSection from '../components/ChartsSection.vue';
 import { useUserStore } from '../stores/userStore.js';
   
 export default {
@@ -51,13 +24,10 @@ export default {
   components: {
     Sidebar,
     Topbar,
-    StatCard,
-    NewPractisesTable,
-    ChartsSection,
   },
   data() {
     return {
-      // userStore: null
+      isSidebarVisible: window.innerWidth >= 768
     };
   },
   created() {
@@ -68,6 +38,12 @@ export default {
   methods: {
     logout() {
       this.userStore.logout();
+    },
+    toggleSidebar() {
+      this.isSidebarVisible = !this.isSidebarVisible;
+    },
+    handleResize() {
+      this.isSidebarVisible = window.innerWidth >= 768;
     }
   },
   computed: {
@@ -77,48 +53,29 @@ export default {
     user() {
       return this.userStore ? this.userStore.user : {};
     },
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 };
 </script>
   
 <style scoped>
-.page-header {
-  text-align: left;
-  margin-block: 0;
-}
-
-.page-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-block: 0;
-}
-
-.page-header .subheading {
-  font-size: 1rem;
-  color: #BCBCBC;
-  font-weight: 400;
-  margin: 0 0.2rem 2rem;
-}
-.dashboard-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
 .dashboard-layout {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  flex-direction: row;
 }
+
 .main-area {
   flex: 1;
   display: flex;
   flex-direction: column;
   background: #f5f6fa;
 }
-.content {
-  padding: 2rem;
-  overflow-y: auto;
-  height: 100%;
-}
+
 </style>

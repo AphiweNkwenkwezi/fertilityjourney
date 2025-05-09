@@ -23,13 +23,34 @@
   };
   </script>
   
-  <style scoped>
-  .charts-section {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    gap: 1rem;
-    flex-wrap: wrap;
+<style scoped>
+.charts-section {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+}
+
+.charts-section > * {
+  flex: 1 1 calc(33.333% - 1rem);
+  max-width: calc(33.333% - 1rem); /* Prevents the last chart from stretching full-width */
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .charts-section > * {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
   }
-  </style>
+}
+
+@media (max-width: 600px) {
+  .charts-section > * {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+
+</style>
   
