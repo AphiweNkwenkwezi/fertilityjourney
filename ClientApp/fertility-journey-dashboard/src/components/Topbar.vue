@@ -9,6 +9,7 @@
     <div class="actions">
       <!-- Notifications -->
       <NotificationsDropdown />
+
       <div class="dropdown" @click="toggleDropdown">
         <div class="profile-display">
           <div class="avatar-wrapper">
@@ -28,16 +29,10 @@
           <span class="profile-name">{{ user.name }} {{ user.lastname }}</span>
           <i class="fas fa-chevron-down dropdown-icon"></i>
         </div>
-        <div v-if="dropdown" class="dropdown-menu">
-          <div class="dropdown-menu-header-container">
-            <p class="dropdown-menu-header">{{ user.name }} {{ user.lastname }}</p>
-            <p class="dropdown-menu-subheader">{{ user.email }}</p>
-          </div>
-          <div class="dropdown-menu-divider"></div>
-          <router-link to="/profile" class="dropdown-item">Profile</router-link>
-          <div class="dropdown-menu-divider"></div>
-          <a href="#" @click.prevent="$emit('logout')" class="dropdown-item">Logout</a>
-        </div>
+        <AccountDropdown 
+          :show="showAccountDropdown" 
+          :user="user" 
+        />
       </div>
     </div>
   </header>
@@ -45,6 +40,7 @@
 
 <script>
 import NotificationsDropdown from './NotificationsDropdown.vue';
+import AccountDropdown from './AccountDropdown.vue'
 
 export default {
   name: 'Topbar',
@@ -55,11 +51,12 @@ export default {
     }
   },
   components: {
-    NotificationsDropdown
+    NotificationsDropdown,
+    AccountDropdown
   },
   data() {
     return { 
-      dropdown: false, 
+      showAccountDropdown: false, 
      };
   },
   computed: {
@@ -71,7 +68,7 @@ export default {
   },
   methods: {
     toggleDropdown() {
-      this.dropdown = !this.dropdown;
+      this.showAccountDropdown = !this.showAccountDropdown;
     }
   }
 };
@@ -104,55 +101,6 @@ export default {
 .profile-name {
   font-size: 14px;
   font-weight: 600;
-}
-.dropdown-icon {
-  font-size: 12px;
-  color: var(--color-blue);
-}
-.dropdown {
-  position: relative;
-}
-.dropdown-menu {
-  position: absolute;
-  top: 4.5rem;
-  right: 0;
-  background: #fff;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  width: auto;
-  z-index: 100;
-}
-
-.dropdown-item {
-  margin: 0.75rem 0.75rem; /* space around the item */
-  padding: 0.75rem 0.75rem;  /* space inside the item */
-  display: block;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  border-radius: 6px; /* optional: makes it look more modern */
-  transition: background 0.2s ease;
-}
-.dropdown-item:hover {
-  background: rgba(157, 157, 157, 0.08);
-}
-.dropdown-menu-header {
-  font-weight: 600;
-  font-size: 16px;
-  margin-block: 0.1rem;
-}
-.dropdown-menu-subheader {
-  font-weight: 400;
-  font-size: 14px;
-  margin-block: 0.1rem;
-  color: #747474;
-}
-.dropdown-menu-header-container {
-  padding: 0.75rem 1.25rem;
-}
-.dropdown-menu-divider {
-  background-color: rgba(157, 157, 157, 0.24);
-  height: 1px;
 }
 .notification-bell {
   color: #9D9D9D;

@@ -2,13 +2,15 @@
   <div class="dashboard-layout">
     <!-- Sidebar -->
     <Sidebar :isVisible="isSidebarVisible" />
+
     <div class="main-area">
       <!-- Top nav -->
       <Topbar 
         :user=user
         @logout="logout" 
         @toggle-sidebar="toggleSidebar"
-      />  
+      /> 
+       
       <!-- Views -->
       <router-view /> 
     </div>

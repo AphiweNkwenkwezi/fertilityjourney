@@ -55,10 +55,6 @@ export default {
       .then(() => console.log("Notifications loaded successfully."))
       .catch(error => console.error("Error loading notifications:", error));    
   },
-  data() {
-    return {
-    };
-  },
   computed: {
     notificationStore() {
       return useNotificationStore();
