@@ -45,7 +45,6 @@
 </template>
   
 <script>
-// import KevAvatar from '@/assets/profile photo.png'
 import { useNotificationStore } from '../stores/notificationStore';
 
 export default {
@@ -96,12 +95,10 @@ export default {
   cursor: pointer;
   margin-right: 1rem;
 }
-
 .bell-icon {
   font-size: 20px;
   color: #9D9D9D;
 }
-
 .notification-badge {
   position: absolute;
   top: -10px;
@@ -113,7 +110,6 @@ export default {
   border-radius: 50%;
   font-weight: bold;
 }
-
 .notification-dropdown {
   position: absolute;
   right: 0;
@@ -126,14 +122,12 @@ export default {
   z-index: 100;
   padding: 0.5rem 0;
 }
-
 .notification-item {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem;
   border-bottom: 1px solid #f0f0f0;
 }
-
 .notif-avatar {
   width: 36px;
   height: 36px;
@@ -146,17 +140,14 @@ export default {
   font-weight: bold;
   margin-right: 0.75rem;
 }
-
 .notif-content {
   flex: 1;
 }
-
 .notif-heading {
   font-weight: bold;
   margin: 0;
   font-size: 14px;
 }
-
 .notif-meta {
   font-size: 14px;
   color: #747474;
@@ -172,7 +163,6 @@ export default {
   cursor: pointer;
   font-size: 12px;
 }
-
 .clear-all {
   text-align: center;
   padding: 0.75rem;
@@ -184,7 +174,6 @@ export default {
 .clear-all:hover {
   text-decoration: underline;
 }
-
 .dropdown-menu-header {
   font-weight: 600;
   font-size: 16px;
@@ -205,7 +194,6 @@ export default {
   cursor: pointer;
   transition: color 0.2s;
 }
-
 .notif-delete:hover {
   color: #FF4C4C;
 }
@@ -226,14 +214,12 @@ export default {
   font-size: 0.9rem;
   overflow: hidden;
 }
-
 .avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
 }
-
 .avatar-initials {
   text-transform: uppercase;
 }
