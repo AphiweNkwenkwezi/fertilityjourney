@@ -1,8 +1,8 @@
 <template>
 	<div v-if="show" class="dropdown-menu">
     <div class="dropdown-menu-header-container">
-      <p class="dropdown-menu-header">{{ user.name }} {{ user.lastname }}</p>
-      <p class="dropdown-menu-subheader">{{ user.email }}</p>
+      <p class="dropdown-menu-header">{{ name }}</p>
+      <p class="dropdown-menu-subheader">{{ email }}</p>
     </div>
     <div class="dropdown-menu-divider"></div>
     <router-link to="/profile" class="dropdown-item">Profile</router-link>
@@ -15,8 +15,12 @@
 export default {
   name: 'AccountDropdown',
   props: {
-    user: {
-      type: Object,
+    name: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
       required: true
     },
     show: {

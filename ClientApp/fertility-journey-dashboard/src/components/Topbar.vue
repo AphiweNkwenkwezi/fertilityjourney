@@ -31,7 +31,8 @@
         </div>
         <AccountDropdown 
           :show="showAccountDropdown" 
-          :user="user" 
+          :name="user.name + ' ' + user.lastname"
+          :email="user.email"
         />
       </div>
     </div>
@@ -143,5 +144,4 @@ export default {
     display: block;
   }
 }
-
 </style>
