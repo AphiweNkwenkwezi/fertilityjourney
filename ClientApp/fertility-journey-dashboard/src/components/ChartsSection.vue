@@ -32,7 +32,7 @@
 
 .charts-section > * {
   flex: 1 1 calc(33.333% - 1rem);
-  max-width: calc(33.333% - 1rem); /* Prevents the last chart from stretching full-width */
+  max-width: calc(33.333% - 1rem);
   display: flex;
   justify-content: center;
 }
@@ -50,7 +50,5 @@
     max-width: 100%;
   }
 }
-
-
 </style>
   
