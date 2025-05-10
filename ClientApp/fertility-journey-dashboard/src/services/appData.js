@@ -35,7 +35,7 @@ export const practises =  [
     active: true,
   },
   {
-    name: 'Oceanview Practice',
+    name: 'Oceanview Practise',
     tel: '041-456-7890',
     email: 'admin@oceanview.co.za',
     dateCreated: '2025-05-02',
@@ -76,7 +76,7 @@ export const charts =  [
   { label: "Post Treatment", percentage: 15, color: "#67ADB9" },
 ];
 export const totals =  [
-  { title: "Total Practices", value: 120, growth: 4, icon: "fas fa-clinic-medical" },
+  { title: "Total Practises", value: 120, growth: 4, icon: "fas fa-clinic-medical" },
   { title: "Total Subscribers", value: 3452, growth: 2, icon: "fas fa-user-friends" },
   { title: "Total Treatments", value: 212, growth: 5, icon: "fas fa-pills" },
   { title: "Total Consents", value: 168, growth: -1, icon: "fas fa-file-signature" },

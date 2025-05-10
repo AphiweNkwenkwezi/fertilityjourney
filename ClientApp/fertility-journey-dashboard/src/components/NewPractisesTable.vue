@@ -17,11 +17,19 @@
               <BaseToggle v-model="practice.active" />
             </td>
             <td class="action-icons">
-              <i class="far fa-edit"></i>
+              <i class="far fa-edit" @click="openEditModal(practice, i)"></i>
               <i class="far fa-trash-alt" @click.stop="deletePractise(i)"></i>
             </td>
           </tr>
         </BaseTable>
+        <!-- Edit Practise Modal -->
+        <EditPractiseModal
+          v-if="showModal"
+          :practise="selectedPractise"
+          :index="selectedPractiseIndex"
+          @save="updatePractise"
+          @close="showModal = false"
+        />
     </section>
   </BaseCard>
 </template>
@@ -31,18 +39,23 @@ import BaseTable from '@/components/BaseTable.vue';
 import BaseCard from './BaseCard.vue';
 import BaseToggle from './BaseToggle.vue';
 import { usePractiseStore } from '../stores/practiseStore';
+import EditPractiseModal from './EditPractiseModal.vue';
   
 export default {
-  name: 'NewPracticesTable',
+  name: 'NewPractisesTable',
   components: { 
     BaseTable,
     BaseCard,
-    BaseToggle
+    BaseToggle,
+    EditPractiseModal
     },
   data() {
     return {
       headers: ['Practise Name', 'Tel No', 'Email', 'Date Created', 'Status', 'Actions'],
-      showAllPractises: false
+      showAllPractises: false,
+      showModal: false,
+      selectedPractise: null,
+      selectedPractiseIndex: -1,
     };
   },
   created() {
@@ -62,11 +75,20 @@ export default {
     }
   },
   methods: {
+    openEditModal(practice, index) {
+      this.selectedPractise = { ...practice };
+      this.selectedPractiseIndex = index;
+      this.showModal = true;
+    },
     toggleSeeAll() {
       this.showAllPractises = !this.showAllPractises;
     },
     deletePractise(index) {
       this.practiseStore.deletePractise(index);
+    },
+    updatePractise(updated, index) {
+      this.practiseStore.updatePractise(updated, index);    
+      this.showModal = false;
     }
   }
 };

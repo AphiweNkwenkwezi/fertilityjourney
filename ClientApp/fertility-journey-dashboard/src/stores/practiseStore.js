@@ -19,6 +19,11 @@ export const  usePractiseStore = defineStore('practise', {
     },
     deletePractise(index) {
       this.practises.slice(index, 1);
+    },
+    updatePractise(updated, index) {
+      if (index !== -1) {
+        this.practises.splice(index, 1, updated);
+      }
     }
   },
 });
