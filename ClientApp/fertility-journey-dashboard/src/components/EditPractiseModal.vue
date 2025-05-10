@@ -1,44 +1,45 @@
 <template>
-    <div class="modal-overlay" @click.self="close">
-      <div class="modal">
-        <h2>Edit Practise</h2>
-        <div class="divider"></div>
-
-        <form @submit.prevent="save">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" v-model="form.name" required />
-          </div>
-          <div class="form-group">
-            <label for="tel">Telephone</label>
-            <input id="tel" type="text" v-model="form.tel" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" type="email" v-model="form.email" required />
-          </div>
-          <div class="form-group">
-            <label for="dateCreated">Date Created</label>
-            <input id="dateCreated" type="date" v-model="form.dateCreated" required />
-          </div>
-          <div class="form-group checkbox">
-            <label>
-              <input type="checkbox" v-model="form.active" />
-              <span class="checkbox-label">Active</span>
-            </label>
-          </div>
-          <div class="modal-actions">
-            <button class="secondary-button" type="button" @click="close">Cancel</button>
-            <button type="submit">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <BaseModal title="Edit Practise" @close="close">  
+      <form @submit.prevent="save">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" v-model="form.name" required />
+        </div>
+        <div class="form-group">
+          <label for="tel">Telephone</label>
+          <input id="tel" type="text" v-model="form.tel" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" v-model="form.email" required />
+        </div>
+        <div class="form-group">
+          <label for="dateCreated">Date Created</label>
+          <input id="dateCreated" type="date" v-model="form.dateCreated" required />
+        </div>
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" v-model="form.active" />
+            <span class="checkbox-label">Active</span>
+          </label>
+        </div>
+        <div class="modal-actions">
+          <button class="secondary-button" type="button" @click="close">Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </BaseModal>  
   </template>
   
   <script>
+  import { Title } from 'chart.js';
+import BaseModal from './BaseModal.vue';
+
   export default {
     name: 'EditPractiseModal',
+    components: {
+      BaseModal
+    },
     props: {
       practise: {
         type: Object,
@@ -65,50 +66,25 @@
   };
   </script>
   
-  <style scoped>
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
+<style scoped>
   
-  .modal {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 450px;
-  }
-  
-  h2 {
-    margin-bottom: 1rem;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  input[type='text'],
-  input[type='email'],
-  input[type='date'] {
-    display: block;
-    width: 95%;
-    padding: 0.6rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
+.form-group {
+margin-bottom: 1rem;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='date'] {
+  display: block;
+  width: 95%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
 .form-group {
   margin-bottom: 1rem;
 }
-
 label {
   display: block;
   margin-bottom: 0.5rem;
@@ -120,7 +96,6 @@ label {
     display: flex;
     align-items: center;
 }
-
 .checkbox-label {
     margin-left: 10px;
 }
@@ -150,11 +125,6 @@ button.secondary-button {
   background-color: transparent;
   color: var(--color-blue);
   border: 1px solid var(--color-blue);
-}
-.divider {
-  background-color: rgba(157, 157, 157, 0.24);
-  height: 1px;
-  margin-bottom: 1rem;
 }
 </style>
   
