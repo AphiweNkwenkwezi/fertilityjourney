@@ -37,58 +37,53 @@
   };
   </script>
   
-  <style scoped>
-  .base-table {
-    overflow-x: auto;
-    background: #fff;
-  }
-  
-  .modern-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-  }
-  
-  thead {
-    background-color: #f5f5f5;
-    text-align: left;
-  }
-  
-  th {
-    padding: 14px 16px;
-    font-size: 0.9rem;
-    color: #747474;
-  }
+<style scoped>
+.base-table {
+  overflow-x: auto;
+  background: #fff;
+}
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
 
-  td {
-    padding: 14px 16px;
-    color: var(--color-text-grey);
-  }
-  
-  td input[type='checkbox'] {
-    transform: scale(1.2);
-    cursor: pointer;
-  }
-  
-  .action-icons i {
-    color: #67adb9;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .see-all {
-    text-align: right;
-    padding: 10px 16px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-  .see-all a {
-    color: #67adb9;
-    text-decoration: none;
-  }
-  .table-divider {
-    background-color: rgba(157, 157, 157, 0.24);
-    height: 2px;
-    }
-  </style>
-  
+thead {
+  background-color: #f5f5f5;
+  text-align: left;
+}
+
+th {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: #747474;
+}
+
+td {
+  padding: 14px 16px;
+  color: var(--color-text-grey);
+}
+td input[type='checkbox'] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.action-icons i {
+  color: #67adb9;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.see-all {
+  text-align: right;
+  padding: 10px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.see-all a {
+  color: #67adb9;
+  text-decoration: none;
+}
+.table-divider {
+  background-color: rgba(157, 157, 157, 0.24);
+  height: 2px;
+}
+</style>
