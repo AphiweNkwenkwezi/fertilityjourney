@@ -3,7 +3,8 @@ import { fetchPractises } from '../services/practiseService.js';
 
 export const  usePractiseStore = defineStore('practise', {
   state: () => ({
-    practises: []
+    practises: [],
+    headers: ['Practise Name', 'Tel No', 'Email', 'Date Created', 'Status', 'Actions'],
   }),
   actions: {
     async getPractises() {
@@ -24,6 +25,9 @@ export const  usePractiseStore = defineStore('practise', {
       if (index !== -1) {
         this.practises.splice(index, 1, updated);
       }
+    },
+    addPractise(newPractise) {
+      this.practises.push(newPractise);
     }
   },
 });

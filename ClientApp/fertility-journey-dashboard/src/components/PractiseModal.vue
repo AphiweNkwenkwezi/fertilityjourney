@@ -1,5 +1,5 @@
 <template>
-    <BaseModal title="Edit Practise" @close="close">  
+    <BaseModal :title="title" @close="close">  
       <form @submit.prevent="save">
         <div class="form-group">
           <label for="name">Name</label>
@@ -36,11 +36,15 @@
 import BaseModal from './BaseModal.vue';
 
   export default {
-    name: 'EditPractiseModal',
+    name: 'PractiseModal',
     components: {
       BaseModal
     },
     props: {
+      title: {
+        type: String,
+        required: true
+      },
       practise: {
         type: Object,
         required: true
@@ -66,8 +70,7 @@ import BaseModal from './BaseModal.vue';
   };
   </script>
   
-<style scoped>
-  
+<style scoped> 
 .form-group {
 margin-bottom: 1rem;
 }

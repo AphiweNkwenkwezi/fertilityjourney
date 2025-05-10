@@ -1,45 +1,46 @@
 <template>
   <BaseCard>
     <section class="new-practices-table">
-        <h2 class="section-title">Newest Practises</h2>
-        <BaseTable 
-          :headers="headers"
-          :showSeeAll="practises.length > 3"
-          :isShowingAll="showAllPractises"
-          @toggle-see-all="toggleSeeAll"
-        >
-          <tr v-for="(practice, i) in displayedPractises" :key="i">
-            <td>{{ practice.name }}</td>
-            <td>{{ practice.tel }}</td>
-            <td>{{ practice.email }}</td>
-            <td>{{ practice.dateCreated }}</td>
-            <td>
-              <BaseToggle v-model="practice.active" />
-            </td>
-            <td class="action-icons">
-              <i class="far fa-edit" @click="openEditModal(practice, i)"></i>
-              <i class="far fa-trash-alt" @click.stop="openDeleteModal(practice, i)"></i>
-            </td>
-          </tr>
-        </BaseTable>
-        
-        <!-- Edit Practise Modal -->
-        <EditPractiseModal
-          v-if="showModal"
-          :practise="selectedPractise"
-          :index="selectedPractiseIndex"
-          @save="updatePractise"
-          @close="showModal = false"
-        />
+      <h2 class="section-title">Newest Practises</h2>
+      <BaseTable 
+        :headers="headers"
+        :showSeeAll="practises.length > 3"
+        :isShowingAll="showAllPractises"
+        @toggle-see-all="toggleSeeAll"
+      >
+        <tr v-for="(practice, i) in displayedPractises" :key="i">
+          <td>{{ practice.name }}</td>
+          <td>{{ practice.tel }}</td>
+          <td>{{ practice.email }}</td>
+          <td>{{ practice.dateCreated }}</td>
+          <td>
+            <BaseToggle v-model="practice.active" />
+          </td>
+          <td class="action-icons">
+            <i class="far fa-edit" @click="openEditModal(practice, i)"></i>
+            <i class="far fa-trash-alt" @click.stop="openDeleteModal(practice, i)"></i>
+          </td>
+        </tr>
+      </BaseTable>
+      
+      <!-- Edit Practise Modal -->
+      <PractiseModal
+        v-if="showModal"
+        title="Edit Practise"
+        :practise="selectedPractise"
+        :index="selectedPractiseIndex"
+        @save="updatePractise"
+        @close="showModal = false"
+      />
 
-        <!-- Confirm Delete Modal -->
-        <ConfirmDeleteModal
-          v-if="showDeleteModal"
-          :practise="selectedPractise"
-          :index="selectedPractiseIndex"
-          @confirm="deletePractise"
-          @close="showDeleteModal = false"
-        />
+      <!-- Confirm Delete Modal -->
+      <ConfirmDeleteModal
+        v-if="showDeleteModal"
+        :practise="selectedPractise"
+        :index="selectedPractiseIndex"
+        @confirm="deletePractise"
+        @close="showDeleteModal = false"
+      />
     </section>
   </BaseCard>
 </template>
@@ -49,7 +50,7 @@ import BaseTable from '@/components/BaseTable.vue';
 import BaseCard from './BaseCard.vue';
 import BaseToggle from './BaseToggle.vue';
 import { usePractiseStore } from '../stores/practiseStore';
-import EditPractiseModal from './EditPractiseModal.vue';
+import PractiseModal from './PractiseModal.vue';
 import ConfirmDeleteModal from './ConfirmDeleteModal.vue';
   
 export default {
@@ -58,12 +59,11 @@ export default {
     BaseTable,
     BaseCard,
     BaseToggle,
-    EditPractiseModal,
+    PractiseModal,
     ConfirmDeleteModal
     },
   data() {
     return {
-      headers: ['Practise Name', 'Tel No', 'Email', 'Date Created', 'Status', 'Actions'],
       showAllPractises: false,
       showModal: false,
       showDeleteModal: false,
@@ -85,6 +85,9 @@ export default {
     },
     practises() {
       return this.practiseStore.practises;
+    },
+    headers() {
+      return this.practiseStore.headers;
     }
   },
   methods: {
@@ -119,27 +122,6 @@ export default {
   margin-bottom: 1rem;
   font-weight: 700;
   padding-left: 1rem;
-}
-
-th,
-td {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-}
-
-td {
-  font-size: 0.85rem;
-}
-.action-icons {
-  display: flex;
-  gap: 0.95rem;
-}
-.action-icons i {    
-  color: #67adb9;
-  /* margin-right: 10px; */
-  cursor: pointer;
-  font-size: 1rem;
 }
 </style>
   

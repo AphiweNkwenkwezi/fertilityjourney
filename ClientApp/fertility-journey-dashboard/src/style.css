@@ -116,6 +116,28 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-primary);
 }
 
+/* Table styles */
+th,
+td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+}
+
+td {
+  font-size: 0.85rem;
+}
+.action-icons {
+  display: flex;
+  gap: 0.95rem;
+}
+.action-icons i {    
+  color: #67adb9;
+  /* margin-right: 10px; */
+  cursor: pointer;
+  font-size: 1rem;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
