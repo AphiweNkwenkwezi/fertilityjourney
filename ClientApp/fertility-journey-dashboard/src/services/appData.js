@@ -1,18 +1,18 @@
 import KevAvatar from '@/assets/profile photo.png'
 
-export const user = { 
+export const user =  { 
   id: 1,
   name: "Aphiwe",
   lastname: "Nkwenkwezi",
   email: "aphiwenkwenkwezi@gmail.com",
   avatar: ""
 };
-export const notifications = [
+export const notifications =  [
   { name: 'John Doe', title: 'New Message', date: '6 May 2025', avatar: KevAvatar },
   { name: 'Jane Smith', title: 'Appointment Reminder', date: '5 May 2025', avatar: KevAvatar },
   { name: 'Kev Doe', title: 'Checkup Reminder', date: '10 May 2025', avatar: KevAvatar }
 ];
-export const practises = [
+export const practises =  [
   {
     name: 'Sunrise Health',
     tel: '021-123-4567',
@@ -70,9 +70,17 @@ export const practises = [
     active: true,
   },
 ];
-export const charts = [
+export const charts =  [
   { label: "Pending", percentage: 35, color: "#F7C548" },
   { label: "Registered", percentage: 50, color: "#6FCF97" },
   { label: "Post Treatment", percentage: 15, color: "#67ADB9" },
+];
+export const totals =  [
+  { title: "Total Practices", value: 120, growth: 4, icon: "fas fa-clinic-medical" },
+  { title: "Total Subscribers", value: 3452, growth: 2, icon: "fas fa-user-friends" },
+  { title: "Total Treatments", value: 212, growth: 5, icon: "fas fa-pills" },
+  { title: "Total Consents", value: 168, growth: -1, icon: "fas fa-file-signature" },
+  { title: "Total Consents Signed", value: 142, growth: 3, icon: "fas fa-file-signature" },
+  { title: "Total Fact Sheets Read", value:2678, growth: 6, icon: "fas fa-book-open" }
 ]
 

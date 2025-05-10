@@ -8,12 +8,13 @@
 
       <!-- Dashboard totals -->
       <div class="dashboard-stats">
-        <StatCard title="Total Practices" :value=120 :growth="4" icon="fas fa-clinic-medical" />
-        <StatCard title="Total Subscribers" :value=3452 :growth="2" icon="fas fa-user-friends" />
-        <StatCard title="Total Treatments" :value=212 :growth="5" icon="fas fa-pills" />
-        <StatCard title="Total Consents" :value=168 :growth="-1" icon="fas fa-file-signature" />
-        <StatCard title="Total Consents Signed" :value=142 :growth="3" icon="fas fa-file-signature" />
-        <StatCard title="Total Fact Sheets Read" :value=2678 :growth="6" icon="fas fa-book-open" />
+        <StatCard
+          v-for="total in totals"
+          :title="total.title"
+          :value="total.value"
+          :growth="total.growth"
+          :icon="total.icon"
+        />
       </div>
 
       <!-- Charts summaries -->
@@ -29,6 +30,7 @@ import StatCard from '../components/StatCard.vue';
 import NewPractisesTable from '../components/NewPractisesTable.vue';
 import ChartsSection from '../components/ChartsSection.vue';
 import { useUserStore } from '../stores/userStore.js';
+import { useTotalsStore } from '../stores/totalsStore.js';
 
 export default {
   name: 'Dashboard',
@@ -41,14 +43,23 @@ export default {
     this.userStore.getUser()
       .then(() => console.log("User data fetched successfully."))
       .catch(error => console.error("Error fetching user data:", error));  
+    this.totalsStore.getTotals()
+      .then(() => console.log("Totals data fetched successfully."))
+      .catch(error => console.error("Error fetching totals data:", error));  
   },
   computed: {
     userStore() {
       return useUserStore();
     },
+    totalsStore() {
+      return useTotalsStore();
+    },
     user() {
       return this.userStore ? this.userStore.user : {};
     },
+    totals() {
+      return this.totalsStore ? this.totalsStore.totals : []
+    }
   }
 }
 </script>
