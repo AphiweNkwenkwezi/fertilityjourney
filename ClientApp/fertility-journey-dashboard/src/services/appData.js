@@ -70,4 +70,9 @@ export const practises = [
     active: true,
   },
 ];
+export const charts = [
+  { label: "Pending", percentage: 35, color: "#F7C548" },
+  { label: "Registered", percentage: 50, color: "#6FCF97" },
+  { label: "Post Treatment", percentage: 15, color: "#67ADB9" },
+]
 

@@ -26,6 +26,9 @@ export const  useNotificationStore = defineStore('notification', {
     },
     clearAllNotifications() {
       this.notifications = [];
-    }
+    },
+    setShowNotifications(value) {
+      this.showNotifications = value;
+    },
   },
 });

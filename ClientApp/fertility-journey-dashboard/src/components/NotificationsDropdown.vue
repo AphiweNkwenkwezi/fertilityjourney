@@ -1,58 +1,37 @@
 <template>
-  <div class="notification-wrapper" @click="toggleNotifications">
+  <!-- <div class="notification-wrapper" @click="toggleNotifications"> -->
+  <div ref="wrapper" class="notification-wrapper" @click.stop="toggleNotifications">
     <i class="fas fa-bell bell-icon"></i>
     <span v-if="notifications.length" class="notification-badge">{{ notifications.length }}</span>
 
-    <div v-if="showNotifications" class="notification-dropdown">
-      <div class="dropdown-menu-header-container">
-        <p class="dropdown-menu-header">Notifications</p>
-        <p class="dropdown-menu-subheader">You have {{ isAnyUnreadMessages ? notifications.length : 'no' }} unread messages</p>
-      </div>
-      <div v-if="isAnyUnreadMessages" class="dropdown-menu-divider"></div>
-      <div
-        v-for="(notif, index) in notifications"
-        :key="index"
-        class="notification-item"
-      >
-        <div class="notif-avatar">
-          <template v-if="notif.avatar">
-            <img :src="notif.avatar" alt="Avatar" class="avatar-img" />
-          </template>
-          <template v-else>
-              <span class="avatar-initials">{{ getInitials(notif.name) }}</span>
-          </template>
-        </div>
-        <div class="notif-content">
-          <p class="notif-heading">{{ notif.title }}</p>
-          <p class="notif-meta">{{ notif.name }}</p>
-          <div class="date-icon-wrapper">
-            <i class="far fa-clock notif-clock"></i>
-            <p class="notif-meta-date">{{ notif.date }}</p>
-          </div>
-        </div>
-        <i
-          class="far fa-trash-alt notif-delete"
-          @click.stop="deleteNotification(index)"
-        ></i>
-      </div>
-
-      <div v-if="isAnyUnreadMessages">
-          <div class="dropdown-menu-divider"></div>
-          <div class="clear-all" @click="clearAllNotifications">Clear All</div>
-      </div>
-  </div>
+    <NotificationsPanel
+      v-if="showNotifications"
+      :notifications="notifications"
+      @delete="deleteNotification"
+      @clear="clearAllNotifications"
+    />
   </div>
 </template>
   
 <script>
 import { useNotificationStore } from '../stores/notificationStore';
+import NotificationsPanel from './NotificationsPanel.vue';
 
 export default {
   name: 'NotificationsDropdown',
+  components: {
+    NotificationsPanel,
+  },
   created() {
     this.notificationStore.getNotifications()
       .then(() => console.log("Notifications loaded successfully."))
       .catch(error => console.error("Error loading notifications:", error));    
+  },
+  mounted() {
+    document.addEventListener('click', this.handleClickOutside);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
   },
   computed: {
     notificationStore() {
@@ -60,9 +39,6 @@ export default {
     },
     notifications() {
       return this.notificationStore.notifications;
-    },
-    toggleNotifications() {
-      this.notificationStore.toggleNotifications();
     },
     showNotifications() {
       return this.notificationStore.showNotifications;
@@ -79,11 +55,19 @@ export default {
         .join('')
         .toUpperCase();
     },
+    toggleNotifications() {
+      this.notificationStore.toggleNotifications();
+    },
     deleteNotification(index) {
       this.notificationStore.deleteNotification(index);
     },
     clearAllNotifications() {
       this.notificationStore.clearAllNotifications();
+    },
+    handleClickOutside(event) {
+      if (this.$refs.wrapper && !this.$refs.wrapper.contains(event.target)) {
+        this.notificationStore.setShowNotifications(false);
+      }
     },
   }
 };
@@ -109,125 +93,6 @@ export default {
   padding: 2px 6px;
   border-radius: 50%;
   font-weight: bold;
-}
-.notification-dropdown {
-  position: absolute;
-  right: 0;
-  top: 250%;
-  width: 300px;
-  background: white;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-  z-index: 100;
-  padding: 0.5rem 0;
-}
-.notification-item {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #f0f0f0;
-}
-.notif-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: rgba(103, 173, 185, 0.08);
-  color: #578388;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  margin-right: 0.75rem;
-}
-.notif-content {
-  flex: 1;
-}
-.notif-heading {
-  font-weight: bold;
-  margin: 0;
-  font-size: 14px;
-}
-.notif-meta {
-  font-size: 14px;
-  color: #747474;
-  margin-block: 0.1rem;
-}
-.notif-meta-date {
-  font-size: 12px;
-  color: #BCBCBC; 
-  margin-block: 0.1rem;
-  }
-.notif-delete {
-  color: #ccc;
-  cursor: pointer;
-  font-size: 12px;
-}
-.clear-all {
-  text-align: center;
-  padding: 0.75rem;
-  font-size: 14px;
-  color: #578388;
-  cursor: pointer;
-  font-weight: 600;
-}
-.clear-all:hover {
-  text-decoration: underline;
-}
-.dropdown-menu-header {
-  font-weight: 600;
-  font-size: 16px;
-  margin-block: 0.1rem;
-  }
-.dropdown-menu-subheader {
-  font-weight: 400;
-  font-size: 14px;
-  margin-block: 0.1rem;
-  color: #747474;
-}
-.dropdown-menu-header-container {
-  padding: 0.75rem 1.25rem;
-}
-.notif-delete {
-  color: #9D9D9D;
-  font-size: 14px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-.notif-delete:hover {
-  color: #FF4C4C;
-}
-.dropdown-menu-divider {
-  background-color: rgba(157, 157, 157, 0.24);
-  height: 1px;
-}
-.notif-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(103, 173, 185, 0.08); /* #67ADB914 */
-  color: #578388;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.9rem;
-  overflow: hidden;
-}
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.avatar-initials {
-  text-transform: uppercase;
-}
-.date-icon-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #BCBCBC; 
 }
 </style>
   
