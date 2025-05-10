@@ -4,12 +4,13 @@ import Dashboard from '../views/Dashboard.vue'
 import Logs from '../views/Logs.vue'
 import Profile from '../views/Profile.vue'
 import Practises from '../views/Practises.vue'
+import Login from '../views/Login.vue'
 
 const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/Login.vue')
+    component: Login
   },
   {
     path: '/',
