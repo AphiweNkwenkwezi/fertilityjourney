@@ -1,13 +1,14 @@
 <template>
   <div class="modal-overlay" @click.self="close">
-    <div class="modal">
-      <h2>{{ title }}</h2>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">{{ title }}</h2>
       <div class="divider"></div>
       <slot></slot>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>
-  
+
 <script>
 export default {
   name: 'BaseModal',
