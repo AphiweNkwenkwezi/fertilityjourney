@@ -47,18 +47,15 @@
   border-collapse: collapse;
   min-width: 800px;
 }
-
 thead {
   background-color: #f5f5f5;
   text-align: left;
 }
-
 th {
   padding: 14px 16px;
   font-size: 0.9rem;
   color: #747474;
 }
-
 td {
   padding: 14px 16px;
   color: var(--color-text-grey);
