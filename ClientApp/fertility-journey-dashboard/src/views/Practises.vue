@@ -86,22 +86,9 @@ export default defineComponent({
   methods: {
     openEditModal(practise, index) {
       this.title = "Edit Practise"
-      this.selectedPractise = { ...practise } // avoid mutating directly
+      this.selectedPractise = { ...practise }
       this.selectedIndex = index
       this.showEditModal = true
-    },
-    saveEdit(updated, index) {
-      this.practiseStore.updatePractise(updated, index)
-      this.showEditModal = false
-    },
-    openDeleteModal(practise, index) {
-      this.selectedPractise = practise
-      this.selectedIndex = index
-      this.showDeleteModal = true
-    },
-    confirmDelete(index) {
-      this.practiseStore.deletePractise(index)
-      this.showDeleteModal = false
     },
     openAddModal() {
       this.selectedPractise = {
@@ -114,6 +101,15 @@ export default defineComponent({
       this.selectedIndex = -1
       this.title = "Add New Practise"
       this.showEditModal = true
+    },
+    openDeleteModal(practise, index) {
+      this.selectedPractise = practise
+      this.selectedIndex = index
+      this.showDeleteModal = true
+    },
+    confirmDelete(index) {
+      this.practiseStore.deletePractise(index)
+      this.showDeleteModal = false
     },
     savePractise(practise, index) {
       if (index === -1) {
@@ -131,6 +127,7 @@ export default defineComponent({
 .manage-practises {
   padding: 2rem;
 }
+
 .section-title {
   margin-bottom: 1rem;
   color: #333;
