@@ -1,0 +1,67 @@
+<template>
+  <BaseModal title="Confirm Deletion" @close="$emit('close')">
+    <p>Are you sure you want to delete <strong>{{ practise.name }}</strong>?</p>
+
+    <template #footer>
+      <div class="modal-actions">
+        <button class="secondary-button" type="button" @click="$emit('close')">Cancel</button>
+        <button class="danger-button" type="button" @click="$emit('confirm', index)">Delete</button>
+      </div>
+    </template>
+  </BaseModal>
+</template>
+
+<script>
+import BaseModal from './BaseModal.vue';
+
+export default {
+  name: 'ConfirmDeleteModal',
+  components: { BaseModal },
+  props: {
+    practise: { 
+      type: Object,
+      required: true
+    },
+    index: {
+      type: Number,
+      required: true
+    }
+  }
+}
+</script>
+<style>
+.danger-button {
+  background-color: #942911;
+  color: white;
+  border: none;
+}
+.secondary-button {
+  background-color: transparent;
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
+}
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+button[type='submit'] {
+  background-color: var(--color-blue);
+  color: white;
+  border: none;
+}
+button.secondary-button {
+  background-color: transparent;
+  color: var(--color-blue);
+  border: 1px solid var(--color-blue);
+}
+</style>
+  

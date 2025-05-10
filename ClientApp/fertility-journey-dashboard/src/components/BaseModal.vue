@@ -39,7 +39,6 @@ export default {
   align-items: center;
   z-index: 999;
 }
-
 .modal {
   background: white;
   padding: 2rem;

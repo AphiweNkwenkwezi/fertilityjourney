@@ -18,10 +18,11 @@
             </td>
             <td class="action-icons">
               <i class="far fa-edit" @click="openEditModal(practice, i)"></i>
-              <i class="far fa-trash-alt" @click.stop="deletePractise(i)"></i>
+              <i class="far fa-trash-alt" @click.stop="openDeleteModal(practice, i)"></i>
             </td>
           </tr>
         </BaseTable>
+        
         <!-- Edit Practise Modal -->
         <EditPractiseModal
           v-if="showModal"
@@ -29,6 +30,15 @@
           :index="selectedPractiseIndex"
           @save="updatePractise"
           @close="showModal = false"
+        />
+
+        <!-- Confirm Delete Modal -->
+        <ConfirmDeleteModal
+          v-if="showDeleteModal"
+          :practise="selectedPractise"
+          :index="selectedPractiseIndex"
+          @confirm="deletePractise"
+          @close="showDeleteModal = false"
         />
     </section>
   </BaseCard>
@@ -40,6 +50,7 @@ import BaseCard from './BaseCard.vue';
 import BaseToggle from './BaseToggle.vue';
 import { usePractiseStore } from '../stores/practiseStore';
 import EditPractiseModal from './EditPractiseModal.vue';
+import ConfirmDeleteModal from './ConfirmDeleteModal.vue';
   
 export default {
   name: 'NewPractisesTable',
@@ -47,13 +58,15 @@ export default {
     BaseTable,
     BaseCard,
     BaseToggle,
-    EditPractiseModal
+    EditPractiseModal,
+    ConfirmDeleteModal
     },
   data() {
     return {
       headers: ['Practise Name', 'Tel No', 'Email', 'Date Created', 'Status', 'Actions'],
       showAllPractises: false,
       showModal: false,
+      showDeleteModal: false,
       selectedPractise: null,
       selectedPractiseIndex: -1,
     };
@@ -83,14 +96,20 @@ export default {
     toggleSeeAll() {
       this.showAllPractises = !this.showAllPractises;
     },
-    deletePractise(index) {
-      this.practiseStore.deletePractise(index);
-    },
     updatePractise(updated, index) {
       this.practiseStore.updatePractise(updated, index);    
       this.showModal = false;
+    },
+    openDeleteModal(practise, index) {
+      this.selectedPractise = practise;
+      this.selectedPractiseIndex = index;
+      this.showDeleteModal = true;
+    },
+    deletePractise(index) {
+      this.practiseStore.deletePractise(index);
+      this.showDeleteModal = false;
     }
-  }
+  } 
 };
 </script>
   
