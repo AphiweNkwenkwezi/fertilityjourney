@@ -121,10 +121,17 @@ button[type='submit'] {
   color: white;
   border: none;
 }
+button[type='submit']:hover {
+  background-color: #565254;
+}
+
 button.secondary-button {
   background-color: transparent;
   color: var(--color-blue);
-  border: 1px solid var(--color-blue);
+}
+button.secondary-button:hover {
+  background-color: rgba(103, 173, 185, 0.10);
+  color: var(--color-blue);
 }
 </style>
   

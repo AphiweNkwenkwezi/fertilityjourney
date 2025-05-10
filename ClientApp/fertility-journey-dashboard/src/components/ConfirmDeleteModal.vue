@@ -31,21 +31,19 @@ export default {
 </script>
 <style>
 .danger-button {
-  background-color: #942911;
+  background-color: #FF0000;
   color: white;
   border: none;
 }
 .secondary-button {
   background-color: transparent;
   color: var(--color-blue);
-  border: 1px solid var(--color-blue);
 }
 .modal-actions {
   display: flex;
   justify-content: space-between;
   margin-top: 1.5rem;
 }
-
 button {
   padding: 0.5rem 1rem;
   font-weight: bold;
@@ -61,7 +59,10 @@ button[type='submit'] {
 button.secondary-button {
   background-color: transparent;
   color: var(--color-blue);
-  border: 1px solid var(--color-blue);
+}
+button.secondary-button:hover {
+  background-color: rgba(103, 173, 185, 0.10);
+  color: var(--color-blue);
 }
 </style>
   
