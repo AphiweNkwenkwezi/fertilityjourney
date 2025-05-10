@@ -10,7 +10,7 @@
       <!-- Notifications -->
       <NotificationsDropdown />
 
-      <div class="dropdown" @click="toggleDropdown">
+      <div class="dropdown" @click="toggleAccountDropdown">
         <div class="profile-display">
           <div class="avatar-wrapper">
             <template v-if="user.avatar">
@@ -33,6 +33,7 @@
           :show="showAccountDropdown" 
           :name="user.name + ' ' + user.lastname"
           :email="user.email"
+          @logout="$emit('logout')"
         />
       </div>
     </div>
@@ -68,9 +69,12 @@ export default {
     }
   },
   methods: {
-    toggleDropdown() {
+    toggleAccountDropdown() {
       this.showAccountDropdown = !this.showAccountDropdown;
-    }
+    },
+    close() {
+      this.showAccountDropdown = false;
+    },
   }
 };
 </script>

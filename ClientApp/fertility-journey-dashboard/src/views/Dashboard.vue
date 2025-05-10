@@ -40,9 +40,6 @@ export default {
     ChartsSection,
   },
   created() {
-    this.userStore.getUser()
-      .then(() => console.log("User data fetched successfully."))
-      .catch(error => console.error("Error fetching user data:", error));  
     this.totalsStore.getTotals()
       .then(() => console.log("Totals data fetched successfully."))
       .catch(error => console.error("Error fetching totals data:", error));  

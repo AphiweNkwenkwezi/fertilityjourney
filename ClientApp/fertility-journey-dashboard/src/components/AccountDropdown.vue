@@ -1,5 +1,5 @@
 <template>
-	<div v-if="show" class="dropdown-menu">
+	<div v-if="show" class="dropdown-menu" @click.stop>
     <div class="dropdown-menu-header-container">
       <p class="dropdown-menu-header">{{ name }}</p>
       <p class="dropdown-menu-subheader">{{ email }}</p>

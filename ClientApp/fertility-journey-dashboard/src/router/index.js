@@ -7,6 +7,11 @@ import Practises from '../views/Practises.vue'
 
 const routes = [
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue')
+  },
+  {
     path: '/',
     component: DashboardLayout,
     children: [
@@ -31,7 +36,7 @@ const routes = [
         component: Logs
       }
     ]
-  }
+  },
 ]
 
 const router = createRouter({

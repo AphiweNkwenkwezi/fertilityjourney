@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="notification-wrapper" @click="toggleNotifications"> -->
   <div ref="wrapper" class="notification-wrapper" @click.stop="toggleNotifications">
     <i class="fas fa-bell bell-icon"></i>
     <span v-if="notifications.length" class="notification-badge">{{ notifications.length }}</span>
