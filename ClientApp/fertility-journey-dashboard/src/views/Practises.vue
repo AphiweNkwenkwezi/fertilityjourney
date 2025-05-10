@@ -5,7 +5,7 @@
       <button class="add-button" @click="openAddModal">Add New</button>
     </div>
 
-    <BaseTable :headers="headers">
+    <BaseTable :headers="headers" :showSeeAll="false">
       <tr v-for="(practise, i) in practiseStore.practises" :key="i">
         <td>{{ practise.name }}</td>
         <td>{{ practise.tel }}</td>
