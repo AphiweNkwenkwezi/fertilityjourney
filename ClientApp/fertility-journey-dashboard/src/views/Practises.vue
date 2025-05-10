@@ -126,6 +126,8 @@ export default defineComponent({
 <style scoped>
 .manage-practises {
   padding: 2rem;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .section-title {

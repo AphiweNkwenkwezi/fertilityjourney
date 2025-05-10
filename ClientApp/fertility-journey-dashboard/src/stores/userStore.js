@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { authenticate } from '@/services/authService';
+import { authenticate, fetchRoles } from '@/services/authService';
 import router from '@/router'
 
 export const useUserStore = defineStore('user', {
@@ -12,6 +12,7 @@ export const useUserStore = defineStore('user', {
       email: '',
       avatar: ''
     },
+    roles: []
   }),
   actions: {
     login(name) {
@@ -39,6 +40,20 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         console.error("Error getting user: ", error);
       }
+    },
+    async getRoles() {
+      try {
+        const roles = await fetchRoles();
+
+        this.$patch({   
+          roles: roles
+        });
+      } catch (error) {
+        console.error("Error getting roles: ", error);
+      }
+    },
+    updateUser(updated) {
+      this.user = { ...updated };
     }
   },
 });

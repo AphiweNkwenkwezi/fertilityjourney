@@ -1,5 +1,5 @@
 import api from "./api";
-import { user } from './appData';
+import { users, roles } from './appData';
 
 export const authenticate = async (username) => {
   // try {
@@ -22,5 +22,9 @@ export const authenticate = async (username) => {
   //   console.error("Error authenticating user:", error);
   //   throw error;
   // }
-  return user;
+  return users[0];
 };
+
+export const fetchRoles = async () => {
+  return roles;
+}

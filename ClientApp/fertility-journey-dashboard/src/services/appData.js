@@ -1,12 +1,12 @@
 import KevAvatar from '@/assets/profile photo.png'
 
-export const user =  { 
-  id: 1,
-  name: "Aphiwe",
-  lastname: "Nkwenkwezi",
-  email: "aphiwenkwenkwezi@gmail.com",
-  avatar: ""
-};
+export const users = [
+  { id: 1, name: "Aphiwe", lastname: "Nkwenkwezi", email: "aphiwenkwenkwezi@gmail.com", avatar: "", role: "Administrator" },
+  { id: 2, name: "Zanele", lastname: "Mthembu", email: "zanele.mthembu@example.com", avatar: "", role: "Doctor" },
+  { id: 3, name: "Thabo", lastname: "Mokoena", email: "thabo.mokoena@example.com", avatar: "", role: "Nurse" },
+  { id: 4, name: "Lebo", lastname: "Ramokgopa", email: "lebo.ramokgopa@example.com", avatar: "", role: "Receptionist" },
+  { id: 5, name: "Nomvula", lastname: "Dlamini", email: "nomvula.dlamini@example.com", avatar: "", role: "Admin Assistant" }
+];
 export const notifications =  [
   { name: 'John Doe', title: 'New Message', date: '6 May 2025', avatar: KevAvatar },
   { name: 'Jane Smith', title: 'Appointment Reminder', date: '5 May 2025', avatar: KevAvatar },
@@ -82,5 +82,12 @@ export const totals =  [
   { title: "Total Consents", value: 168, growth: -1, icon: "fas fa-file-signature" },
   { title: "Total Consents Signed", value: 142, growth: 3, icon: "fas fa-file-signature" },
   { title: "Total Fact Sheets Read", value:2678, growth: 6, icon: "fas fa-book-open" }
+];
+export const roles = [
+  'Administrator',
+  'Doctor',
+  'Nurse',
+  'Receptionist',
+  'Admin Assistant'
 ]
 

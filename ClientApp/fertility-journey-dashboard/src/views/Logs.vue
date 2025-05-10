@@ -52,8 +52,9 @@ export default {
 
 <style scoped>
 .logs-view {
-  padding: 1rem;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100%;
 }
-
 </style>
   
