@@ -23,6 +23,7 @@
       <!-- New Practises Summary -->
       <NewPractisesTable />
     </main>
+    <loading :active.sync="isLoading" :is-full-page="true" color="#67ADB9" loader="dots" :opacity="0.5" background-color="#000"/>
 </template>
 
 <script>
@@ -31,6 +32,7 @@ import NewPractisesTable from '../components/NewPractisesTable.vue';
 import ChartsSection from '../components/ChartsSection.vue';
 import { useUserStore } from '../stores/userStore.js';
 import { useTotalsStore } from '../stores/totalsStore.js';
+import { useToast } from 'vue-toastification';
 
 export default {
   name: 'Dashboard',
@@ -39,10 +41,21 @@ export default {
     NewPractisesTable,
     ChartsSection,
   },
+  setup() {
+    const toast = useToast();
+    return {
+      toast
+    };
+  },
   created() {
     this.totalsStore.getTotals()
       .then(() => console.log("Totals data fetched successfully."))
       .catch(error => console.error("Error fetching totals data:", error));  
+  },
+  data() {
+    return {
+      isLoading: false
+    } 
   },
   computed: {
     userStore() {

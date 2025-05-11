@@ -33,31 +33,22 @@ import {
   
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
-import Vue3Toastify from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
-
-const options = {
-  position: "top-right",
-  timeout: 3000,
-
-};
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 const app = createApp(App);
 const pinia = createPinia();
 
 app.use(pinia);
 app.use(router);
-app.use(Vue3Toastify, {
-  autoClose: 3000,
-  position: 'top-right',
-  toastDefaults: {
-    success: {
-      className: 'custom-success-toast',
-    },
-    error: {
-      className: 'custom-error-toast',
-    }
-  }
+app.use(Toast, {
+  transition: "Vue-Toastification__fade",
+  maxToasts: 5,
+  newestOnTop: true,
+  position: "top-right",
+  timeout: 3000,
+  pauseOnHover: true,
+  draggable: true,
 });
 app.component('Loading', Loading);
 

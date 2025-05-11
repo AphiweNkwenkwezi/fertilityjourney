@@ -43,6 +43,7 @@
       />
     </section>
   </BaseCard>
+  <loading :active.sync="isLoading" :is-full-page="true" color="#67ADB9" loader="dots" :opacity="0.5" background-color="#000"/>
 </template>
 
 <script>
@@ -52,6 +53,7 @@ import BaseToggle from './BaseToggle.vue';
 import { usePractiseStore } from '../stores/practiseStore';
 import PractiseModal from './PractiseModal.vue';
 import ConfirmDeleteModal from './ConfirmDeleteModal.vue';
+import { useToast } from 'vue-toastification';
   
 export default {
   name: 'NewPractisesTable',
@@ -62,8 +64,15 @@ export default {
     PractiseModal,
     ConfirmDeleteModal
     },
+  setup() {
+    const toast = useToast();
+    return {
+      toast
+    };
+  },
   data() {
     return {
+      isLoading: false,
       showAllPractises: false,
       showModal: false,
       showDeleteModal: false,
@@ -91,6 +100,12 @@ export default {
     }
   },
   methods: {
+    showLoading() {
+      this.isLoading = true;
+    },
+    closeLoading() {
+      this.isLoading = false;
+    },
     openEditModal(practice, index) {
       this.selectedPractise = { ...practice };
       this.selectedPractiseIndex = index;
@@ -100,7 +115,14 @@ export default {
       this.showAllPractises = !this.showAllPractises;
     },
     updatePractise(updated, index) {
-      this.practiseStore.updatePractise(updated, index);    
+      this.showLoading();
+
+      setTimeout(() => {
+        this.practiseStore.updatePractise(updated, index); 
+        this.closeLoading();
+        this.toast.success("Practise updated successfully!");
+      }, 2000);
+   
       this.showModal = false;
     },
     openDeleteModal(practise, index) {
@@ -109,7 +131,14 @@ export default {
       this.showDeleteModal = true;
     },
     deletePractise(index) {
-      this.practiseStore.deletePractise(index);
+      this.showLoading()
+
+      setTimeout(() => {
+        this.practiseStore.deletePractise(index);
+        this.closeLoading();
+        this.toast.success("Practise removed successfully!");
+      }, 2000);
+
       this.showDeleteModal = false;
     }
   } 

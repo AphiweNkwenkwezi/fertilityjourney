@@ -40,13 +40,13 @@
       </form>
     </div>
   
-    <loading :active.sync="isLoading" :is-full-page="true" />
+    <loading :active.sync="isLoading" :is-full-page="true" color="#67ADB9" loader="dots" :opacity="0.5" background-color="#000"/>
   </div>
 </template>
 
 <script>
+import { useToast } from 'vue-toastification'
 import { useUserStore } from '../stores/userStore'
-import { toast } from 'vue3-toastify';
 
 export default {
   name: 'ProfilePage',
@@ -55,6 +55,12 @@ export default {
       form: {},
       isLoading: false,
     }
+  },
+  setup() {
+    const toast = useToast();
+    return {
+      toast
+    };
   },
   created() {
     const user = this.userStore.user;
@@ -87,7 +93,7 @@ export default {
       setTimeout(() => {
         this.userStore.updateUser(this.form);
         this.isLoading = false;
-        toast.success("Profile updated successfully!");
+        this.toast.success("Profile updated successfully!");
       }, 2000);
     },
     cancelChanges() {

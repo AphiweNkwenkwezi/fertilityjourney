@@ -40,7 +40,7 @@
       @close="showDeleteModal = false"
     />
   </section>
-  <loading :active.sync="isLoading" :is-full-page="true" />
+  <loading :active.sync="isLoading" :is-full-page="true" color="#67ADB9" loader="dots" :opacity="0.5" background-color="#000"/>
 </template>
 
 <script>
@@ -50,7 +50,7 @@ import BaseTable from '@/components/BaseTable.vue'
 import BaseToggle from '@/components/BaseToggle.vue'
 import PractiseModal from '@/components/PractiseModal.vue'
 import ConfirmDeleteModal from '@/components/ConfirmDeleteModal.vue'
-import { toast } from 'vue3-toastify' 
+import { useToast } from 'vue-toastification'
 
 export default defineComponent({
   name: 'Practises',
@@ -59,6 +59,12 @@ export default defineComponent({
     BaseToggle,
     PractiseModal,
     ConfirmDeleteModal
+  },
+  setup() {
+    const toast = useToast();
+    return {
+      toast
+    };
   },
   data() {
     return {
@@ -115,17 +121,25 @@ export default defineComponent({
       setTimeout(() => {
         this.practiseStore.deletePractise(index);
         this.isLoading = false;
-        toast.success("Practise removed successfully!");
+        this.toast.success("Practise removed successfully!");
       }, 2000);
       
       this.showDeleteModal = false
     },
     savePractise(practise, index) {
-      if (index === -1) {
-        this.practiseStore.addPractise(practise);
-      } else {
-        this.practiseStore.updatePractise(practise, index);
-      }
+      this.isLoading = true;
+      setTimeout(() => {
+        if (index === -1) {
+          this.practiseStore.addPractise(practise);
+          this.isLoading = false;
+          this.toast.success("Practise added successfully!");
+        } else {
+          this.practiseStore.updatePractise(practise, index);
+          this.isLoading = false;
+          this.toast.success("Practise updated successfully!");
+        }
+      }, 2000);
+
       this.showEditModal = false;
     }
   }
