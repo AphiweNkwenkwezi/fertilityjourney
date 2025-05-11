@@ -129,7 +129,6 @@ export default defineComponent({
   overflow-y: auto;
   height: 100%;
 }
-
 .section-title {
   margin-bottom: 1rem;
   color: #333;

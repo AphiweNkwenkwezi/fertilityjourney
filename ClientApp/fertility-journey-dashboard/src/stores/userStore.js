@@ -54,6 +54,9 @@ export const useUserStore = defineStore('user', {
     },
     updateUser(updated) {
       this.user = { ...updated };
+    },
+    async registerUser(newUser) {
+      this.user = { ...newUser };
     }
   },
 });

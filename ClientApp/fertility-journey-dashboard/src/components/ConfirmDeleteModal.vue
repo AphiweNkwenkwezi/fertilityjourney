@@ -34,6 +34,13 @@ export default {
   background-color: #FF0000;
   color: white;
   border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.danger-button:hover {
+  background-color: #cc0000;
 }
 .secondary-button {
   background-color: transparent;

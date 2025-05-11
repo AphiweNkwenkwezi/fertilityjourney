@@ -16,6 +16,10 @@
         </div>
         <button type="submit">Log In</button>
       </form>
+      <p class="register-link">
+        Don't have an account?
+        <router-link to="/register">Register here</router-link>
+      </p>
     </div>
   </div>
 </template>
@@ -102,10 +106,27 @@ button {
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  margin-top: 2rem;
 }
 
 button:hover {
-  background-color: #565254;
+  background-color: #5499a8;
+}
+
+.register-link {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.register-link a {
+  color: #67adb9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
 }
 </style>
   

@@ -5,12 +5,18 @@ import Logs from '../views/Logs.vue'
 import Profile from '../views/Profile.vue'
 import Practises from '../views/Practises.vue'
 import Login from '../views/Login.vue'
+import Register from '../views/RegisterUser.vue'
 
 const routes = [
   {
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
   },
   {
     path: '/',

@@ -125,7 +125,7 @@ button[type='submit'] {
   border: none;
 }
 button[type='submit']:hover {
-  background-color: #565254;
+  background-color: #5499a8;
 }
 
 button.secondary-button {
