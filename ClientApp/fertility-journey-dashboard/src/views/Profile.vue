@@ -1,53 +1,59 @@
 <template>
-  <div class="profile-page">
-    <h2 class="section-title">Edit Profile</h2>
+  <div class="content">
+    <div class="profile-page">
+      <h2 class="section-title">Edit Profile</h2>
 
-    <form @submit.prevent="saveProfile" class="profile-form">
-      <div class="form-group">
-        <label for="fullName">Name</label>
-        <input v-model="form.name" id="name" type="text" required />
-      </div>
+      <form @submit.prevent="saveProfile" class="profile-form">
+        <div class="form-group">
+          <label for="fullName">Name</label>
+          <input v-model="form.name" id="name" type="text" required />
+        </div>
 
-      <div class="form-group">
-        <label for="fullName">Surname</label>
-        <input v-model="form.lastname" id="surname" type="text" required />
-      </div>
+        <div class="form-group">
+          <label for="fullName">Surname</label>
+          <input v-model="form.lastname" id="surname" type="text" required />
+        </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input v-model="form.email" id="email" type="email" required />
-      </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input v-model="form.email" id="email" type="email" required />
+        </div>
 
-      <div class="form-group">
-        <label for="role">Role</label>
-        <select v-model="form.role" id="role" required>
-          <option v-for="role in roles" :key="role" :value="role">
-            {{ role }}
-          </option>
-        </select>
-      </div>
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select v-model="form.role" id="role" required>
+            <option v-for="role in roles" :key="role" :value="role">
+              {{ role }}
+            </option>
+          </select>
+        </div>
 
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <input v-model="form.phone" id="phone" type="tel" />
-      </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input v-model="form.phone" id="phone" type="tel" />
+        </div>
 
-      <div class="form-actions">
-        <button type="button" class="secondary-button" @click="cancelChanges">Cancel</button>
-        <button type="submit">Save</button>
-      </div>
-    </form>
+        <div class="form-actions">
+          <button type="button" class="secondary-button" @click="cancelChanges">Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  
+    <loading :active.sync="isLoading" :is-full-page="true" />
   </div>
 </template>
 
 <script>
 import { useUserStore } from '../stores/userStore'
+import { toast } from 'vue3-toastify';
 
 export default {
   name: 'ProfilePage',
   data() {
     return {
-      form: {}
+      form: {},
+      isLoading: false,
     }
   },
   created() {
@@ -76,7 +82,13 @@ export default {
   },
   methods: {
     saveProfile() {
-      this.userStore.updateUser(this.form);
+      this.isLoading = true;
+
+      setTimeout(() => {
+        this.userStore.updateUser(this.form);
+        this.isLoading = false;
+        toast.success("Profile updated successfully!");
+      }, 2000);
     },
     cancelChanges() {
       this.form = { ...this.userStore.user };
@@ -86,11 +98,13 @@ export default {
 </script>
 
 <style scoped>
-.profile-page {
+.content {
   padding: 2rem;
-  max-width: 400px;
   overflow-y: auto;
   height: 100%;
+}
+.profile-page {
+  max-width: 400px;
 }
 
 .profile-form {

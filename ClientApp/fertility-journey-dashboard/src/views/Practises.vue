@@ -40,6 +40,7 @@
       @close="showDeleteModal = false"
     />
   </section>
+  <loading :active.sync="isLoading" :is-full-page="true" />
 </template>
 
 <script>
@@ -49,6 +50,7 @@ import BaseTable from '@/components/BaseTable.vue'
 import BaseToggle from '@/components/BaseToggle.vue'
 import PractiseModal from '@/components/PractiseModal.vue'
 import ConfirmDeleteModal from '@/components/ConfirmDeleteModal.vue'
+import { toast } from 'vue3-toastify' 
 
 export default defineComponent({
   name: 'Practises',
@@ -60,6 +62,7 @@ export default defineComponent({
   },
   data() {
     return {
+      isLoading: false,
       showEditModal: false,
       showDeleteModal: false,
       selectedPractise: null,
@@ -108,7 +111,13 @@ export default defineComponent({
       this.showDeleteModal = true
     },
     confirmDelete(index) {
-      this.practiseStore.deletePractise(index)
+      this.isLoading = true;
+      setTimeout(() => {
+        this.practiseStore.deletePractise(index);
+        this.isLoading = false;
+        toast.success("Practise removed successfully!");
+      }, 2000);
+      
       this.showDeleteModal = false
     },
     savePractise(practise, index) {

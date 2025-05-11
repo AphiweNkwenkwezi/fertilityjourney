@@ -25,6 +25,8 @@
 </template>
   
 <script>
+import { useUserStore } from '../stores/userStore';
+
 export default {
   name: "LoginView",
   data() {
@@ -33,11 +35,14 @@ export default {
       password: ""
     };
   },
+  computed: {
+    userStore() {
+      return useUserStore();
+    }    
+  },
   methods: {
     handleLogin() {
-      // Replace this with real login logic
-      console.log("Logging in with:", this.email, this.password);
-      this.$router.push('/dashboard');
+      this.userStore.login(this.email);
     }
   }
 };

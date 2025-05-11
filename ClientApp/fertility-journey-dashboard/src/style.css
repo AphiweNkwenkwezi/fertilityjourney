@@ -167,6 +167,19 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(103, 173, 185, 0.15);
 }
 
+.custom-success-toast {
+  background-color: #28a745 !important;
+  color: white !important;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.custom-error-toast {
+  background-color: #dc3545 !important;
+  color: white !important;
+  border-radius: 6px;
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;

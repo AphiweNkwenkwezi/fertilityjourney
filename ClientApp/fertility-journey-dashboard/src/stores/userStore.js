@@ -18,6 +18,7 @@ export const useUserStore = defineStore('user', {
     login(name) {
       this.username = name;
       this.isLoggedIn = true;
+      router.push('/dashboard');
     },
     logout() {
       console.log('Logging out...');
@@ -57,6 +58,7 @@ export const useUserStore = defineStore('user', {
     },
     async registerUser(newUser) {
       this.user = { ...newUser };
+      router.push('/dashboard');
     }
   },
 });
