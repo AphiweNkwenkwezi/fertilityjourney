@@ -18,7 +18,7 @@
       </form>
       <p class="register-link">
         Don't have an account?
-        <router-link to="/register">Register here</router-link>
+        <router-link to="/register"><strong>Register here</strong></router-link>
       </p>
     </div>
   </div>
