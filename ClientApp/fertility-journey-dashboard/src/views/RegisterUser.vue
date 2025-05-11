@@ -30,6 +30,11 @@
         </div>
         <button type="submit">Register</button>
       </form>
+      <!-- Link to login -->
+      <p class="switch-auth-text">
+        Already have an account?
+        <router-link to="/login" class="auth-link">Log in here</router-link>
+      </p>
     </div>
   </div>
 </template>
@@ -138,5 +143,20 @@ button {
 
 button:hover {
   background-color: #5499a8;
+}
+.switch-auth-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.auth-link {
+  color: var(--color-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
 }
 </style>
