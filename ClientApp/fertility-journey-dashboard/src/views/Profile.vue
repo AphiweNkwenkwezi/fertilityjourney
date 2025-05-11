@@ -120,26 +120,6 @@ input[type='tel'] {
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-select {
-  display: block;
-  padding: 0.6rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: white;
-  color: #333;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%23999' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 1em;
-}
-
-select:focus {
-  outline: none;
-  border-color: #67ADB9;
-  box-shadow: 0 0 0 2px rgba(103, 173, 185, 0.15);
-}
 .form-actions {
   display: flex;
   justify-content: space-between;

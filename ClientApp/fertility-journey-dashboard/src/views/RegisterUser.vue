@@ -123,13 +123,6 @@ input[type='password'] {
   border-radius: 6px;
   font-size: 1rem;
 }
-select {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-}
 
 button {
   width: 100%;
