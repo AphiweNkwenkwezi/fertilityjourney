@@ -80,7 +80,7 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f5f6fa;
+  background-color: var(--color-bg-alt);
 }
 
 .login-box {

@@ -140,7 +140,7 @@ export default {
       }, 2000);
 
       this.showDeleteModal = false;
-    }
+    },
   } 
 };
 </script>

@@ -7,7 +7,7 @@
   --color-text-grey: #414141;
   --color-blue: #67ADB9;
   --color-bg: #ffffff;
-  --color-bg-alt: #fafafa;
+  --color-bg-alt: #f5f5f5;
   --transition-fast: 0.25s ease-in-out;
 
   font-family: var(--font-body);

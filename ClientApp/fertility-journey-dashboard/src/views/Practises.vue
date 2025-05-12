@@ -41,6 +41,18 @@
     />
   </section>
   <loading :active.sync="isLoading" :is-full-page="true" color="#67ADB9" loader="dots" :opacity="0.5" background-color="#000"/>
+
+  <!-- Success Popup with overlay -->
+  <!-- <transition name="fade">
+    <div v-if="showSuccess" class="success-overlay">
+      <div class="success-popup">
+        <i class="fas fa-check-circle success-icon"></i>
+        <i class="fas fa-check success-icon"></i>
+        <span class="success-heading">Practise</span>
+        <span class="success-sub-heading">Saved successfully!</span>
+      </div>
+    </div>
+  </transition> -->
 </template>
 
 <script>
@@ -68,12 +80,13 @@ export default defineComponent({
   },
   data() {
     return {
+      title: "Edit Practise",
       isLoading: false,
+      showSuccess: true,
       showEditModal: false,
       showDeleteModal: false,
       selectedPractise: null,
-      selectedIndex: null,
-      title: "Edit Practise"
+      selectedIndex: null,   
     }
   },
   created() {
@@ -132,6 +145,11 @@ export default defineComponent({
         if (index === -1) {
           this.practiseStore.addPractise(practise);
           this.isLoading = false;
+          this.showSuccess = true;
+
+          setTimeout(() => {
+            this.showSuccess = false;
+          }, 2500)
           this.toast.success("Practise added successfully!");
         } else {
           this.practiseStore.updatePractise(practise, index);
@@ -141,7 +159,7 @@ export default defineComponent({
       }, 2000);
 
       this.showEditModal = false;
-    }
+    },
   }
 })
 </script>
@@ -170,5 +188,72 @@ export default defineComponent({
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+}
+
+/* Pop-up styles */
+.overlay,
+.success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.success-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  color: var(--color-text-grey);
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  text-align: center;
+  width: auto;
+  min-width: 350px;
+  min-height: 300px;
+}
+
+.success-icon {
+  font-weight: 300;
+  /* font-size: 4rem; */
+  color: #28a745;
+  margin-bottom: 1.5rem;
+}
+.success-heading {
+  font-size: 1.25rem;
+  color: #858585;
+  font-weight: 500;
+  display: block;
+}
+.success-sub-heading {
+  font-size: 2rem;
+  color: var(--color-text-grey);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+/* Fade transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Loader animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
