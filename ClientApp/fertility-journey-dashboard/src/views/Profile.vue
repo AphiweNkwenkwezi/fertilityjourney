@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-actions">
-          <button type="button" class="secondary-button" @click="cancelChanges">Cancel</button>
+          <button type="button" class="secondary-button" @click="cancelChanges">Clear</button>
           <button type="submit">Save</button>
         </div>
       </form>

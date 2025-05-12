@@ -142,7 +142,7 @@ button {
 }
 
 button:hover {
-  background-color: #5499a8;
+  background-color: var(--color-blue-onhover);
 }
 .switch-auth-text {
   margin-top: 1rem;

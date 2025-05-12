@@ -31,7 +31,7 @@ export default {
 </script>
 <style>
 .danger-button {
-  background-color: #FF0000;
+  background-color: var(--color-red);
   color: white;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -40,7 +40,7 @@ export default {
   transition: background-color 0.2s ease-in-out;
 }
 .danger-button:hover {
-  background-color: #cc0000;
+  background-color: var(--color-red-darker);
 }
 .secondary-button {
   background-color: transparent;

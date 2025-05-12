@@ -9,6 +9,9 @@
   --color-bg: #ffffff;
   --color-bg-alt: #f5f5f5;
   --transition-fast: 0.25s ease-in-out;
+  --color-blue-onhover: #5499a8;
+  --color-red: #FF0000;
+  --color-red-darker: #cc0000;
 
   font-family: var(--font-body);
   font-weight: 400;

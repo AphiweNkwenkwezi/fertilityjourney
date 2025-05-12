@@ -115,7 +115,7 @@ button {
 }
 
 button:hover {
-  background-color: #5499a8;
+  background-color: var(--color-blue-onhover);
 }
 
 .register-link {
