@@ -73,14 +73,3 @@ To be added (unit tests and integration tests can be written for both frontend a
 - Practice management with CRUD support
 - Responsive and accessible UI design
 
----
-
-## 🙌 Contribution
-
-Feel free to fork this repo and submit pull requests. Issues and suggestions are welcome.
-
----
-
-## 📃 License
-
-This project is licensed under the MIT License.
