@@ -42,17 +42,14 @@
   </section>
   <loading :active.sync="isLoading" :is-full-page="true" color="#67ADB9" loader="dots" :opacity="0.5" background-color="#000"/>
 
-  <!-- Success Popup with overlay -->
-  <!-- <transition name="fade">
-    <div v-if="showSuccess" class="success-overlay">
-      <div class="success-popup">
-        <i class="fas fa-check-circle success-icon"></i>
-        <i class="fas fa-check success-icon"></i>
-        <span class="success-heading">Practise</span>
-        <span class="success-sub-heading">Saved successfully!</span>
-      </div>
-    </div>
-  </transition> -->
+  <!-- Feedback Popup with overlay -->
+  <BasePopup 
+    :visible="showPopup"
+    :title="popupTitle"
+    :showButton="false"
+    :type="popupType"
+    @close="showPopup = false"
+  />
 </template>
 
 <script>
@@ -63,6 +60,7 @@ import BaseToggle from '@/components/BaseToggle.vue'
 import PractiseModal from '@/components/PractiseModal.vue'
 import ConfirmDeleteModal from '@/components/ConfirmDeleteModal.vue'
 import { useToast } from 'vue-toastification'
+import BasePopup from '../components/BasePopup.vue'
 
 export default defineComponent({
   name: 'Practises',
@@ -70,7 +68,8 @@ export default defineComponent({
     BaseTable,
     BaseToggle,
     PractiseModal,
-    ConfirmDeleteModal
+    ConfirmDeleteModal,
+    BasePopup
   },
   setup() {
     const toast = useToast();
@@ -82,11 +81,13 @@ export default defineComponent({
     return {
       title: "Edit Practise",
       isLoading: false,
-      showSuccess: true,
+      showPopup: false,
       showEditModal: false,
       showDeleteModal: false,
       selectedPractise: null,
-      selectedIndex: null,   
+      selectedIndex: null,
+      popupTitle: "",
+      popupType: ""   
     }
   },
   created() {
@@ -106,6 +107,12 @@ export default defineComponent({
     }
   },
   methods: {
+    openPopup(operation, type = 'success') {
+      const verb = operation === 'add' ? 'added' : 'updated';
+      this.popupTitle = `Practise was ${verb} successfully`;
+      this.popupType = type;
+      this.popupVisible = true;
+    },
     openEditModal(practise, index) {
       this.title = "Edit Practise"
       this.selectedPractise = { ...practise }
@@ -135,6 +142,7 @@ export default defineComponent({
         this.practiseStore.deletePractise(index);
         this.isLoading = false;
         this.toast.success("Practise removed successfully!");
+        this.popupTitle = "Practise was removed successfully";
       }, 2000);
       
       this.showDeleteModal = false
@@ -145,16 +153,22 @@ export default defineComponent({
         if (index === -1) {
           this.practiseStore.addPractise(practise);
           this.isLoading = false;
-          this.showSuccess = true;
+          // this.showPopup = true;
 
-          setTimeout(() => {
-            this.showSuccess = false;
-          }, 2500)
+          // setTimeout(() => {
+          //   this.showPopup = false;
+          // }, 2500)
           this.toast.success("Practise added successfully!");
+          // this.openPopup("add", "success");
         } else {
           this.practiseStore.updatePractise(practise, index);
           this.isLoading = false;
+          // this.showPopup = true;
           this.toast.success("Practise updated successfully!");
+          // setTimeout(() => {
+          //   this.showPopup = false;
+          // }, 2500)
+          // this.openPopup("update", "success");
         }
       }, 2000);
 
@@ -222,7 +236,6 @@ export default defineComponent({
   min-width: 350px;
   min-height: 300px;
 }
-
 .success-icon {
   font-weight: 300;
   /* font-size: 4rem; */

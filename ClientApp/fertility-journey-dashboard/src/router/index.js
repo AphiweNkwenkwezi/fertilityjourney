@@ -6,8 +6,14 @@ import Profile from '../views/Profile.vue'
 import Practises from '../views/Practises.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/RegisterUser.vue'
+import DocumentMonitoring from '../components/DocumentMonitoring.vue'
 
 const routes = [
+    {
+    path: '/monitoring',
+    name: 'document',
+    component: DocumentMonitoring
+  },
   {
     path: '/login',
     name: 'login',
@@ -21,7 +27,7 @@ const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/dashboard',
+    redirect: '/login',
     children: [
       {
         path: 'dashboard',
